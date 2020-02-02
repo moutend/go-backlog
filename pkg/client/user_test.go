@@ -8,7 +8,7 @@ import (
 )
 
 func TestGetUsers(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -26,7 +26,7 @@ func TestGetUsers(t *testing.T) {
 }
 
 func TestGetMyself(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)

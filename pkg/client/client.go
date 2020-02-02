@@ -29,7 +29,7 @@ type Client struct {
 	httpClient HTTPClient
 }
 
-func NewClient(space, token string) (*Client, error) {
+func New(space, token string) (*Client, error) {
 	if space == "" {
 		return nil, fmt.Errorf("space is empty")
 	}

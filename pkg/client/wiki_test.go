@@ -8,7 +8,7 @@ import (
 )
 
 func TestGetWikis(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -26,7 +26,7 @@ func TestGetWikis(t *testing.T) {
 }
 
 func TestGetWiki(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)

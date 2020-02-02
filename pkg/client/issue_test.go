@@ -9,7 +9,7 @@ import (
 )
 
 func TestAddIssue(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -34,7 +34,7 @@ func TestAddIssue(t *testing.T) {
 }
 
 func TestGetIssue(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -52,7 +52,7 @@ func TestGetIssue(t *testing.T) {
 }
 
 func TestUpdateIssue(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -74,7 +74,7 @@ func TestUpdateIssue(t *testing.T) {
 }
 
 func TestDeleteIssue(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -92,7 +92,7 @@ func TestDeleteIssue(t *testing.T) {
 }
 
 func TestGetIssues(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -115,7 +115,7 @@ func TestGetIssues(t *testing.T) {
 }
 
 func TestGetIssuesCount(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -132,7 +132,7 @@ func TestGetIssuesCount(t *testing.T) {
 }
 
 func TestGetIssueTypes(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)

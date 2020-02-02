@@ -8,7 +8,7 @@ import (
 )
 
 func TestGetProjectStatuses(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -25,7 +25,7 @@ func TestGetProjectStatuses(t *testing.T) {
 	log.Printf("GetProjectStatuses: %+v\n", pss)
 }
 func TestGetProject(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -43,7 +43,7 @@ func TestGetProject(t *testing.T) {
 }
 
 func TestGetProjects(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)

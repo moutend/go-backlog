@@ -9,7 +9,7 @@ import (
 )
 
 func TestAddPullRequest(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -34,7 +34,7 @@ func TestAddPullRequest(t *testing.T) {
 }
 
 func TestGetPullRequest(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -52,7 +52,7 @@ func TestGetPullRequest(t *testing.T) {
 }
 
 func TestUpdatePullRequest(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -74,7 +74,7 @@ func TestUpdatePullRequest(t *testing.T) {
 }
 
 func TestGetPullRequests(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
@@ -92,7 +92,7 @@ func TestGetPullRequests(t *testing.T) {
 }
 
 func TestGetPullRequestsCount(t *testing.T) {
-	client, err := NewClient(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
 		t.Fatal(err)
