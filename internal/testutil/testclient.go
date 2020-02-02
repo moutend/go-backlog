@@ -34,7 +34,17 @@ func (t *TestClient) doFakeRequest(req *http.Request) (*http.Response, error) {
 }
 
 func (t *TestClient) doHTTPRequest(req *http.Request) (*http.Response, error) {
+	reqBuffer := &bytes.Buffer{}
+
+	if _, err := io.Copy(reqBuffer, req.Body); err != nil {
+		return nil, err
+	}
+
+	reqBody := reqBuffer.Bytes()
+	req.Body = ioutil.NopCloser(reqBuffer)
+
 	log.Printf("HTTP Request: %v %v\n", req.Method, req.URL)
+	log.Printf("HTTP Payload: (%d bytes) %s\n", len(reqBody), reqBody)
 
 	hc := &http.Client{}
 
@@ -44,15 +54,16 @@ func (t *TestClient) doHTTPRequest(req *http.Request) (*http.Response, error) {
 		return nil, err
 	}
 
-	buf := &bytes.Buffer{}
+	resBuffer := &bytes.Buffer{}
 
-	if _, err = io.Copy(buf, res.Body); err != nil {
+	if _, err = io.Copy(resBuffer, res.Body); err != nil {
 		return nil, err
 	}
 
-	res.Body = ioutil.NopCloser(buf)
+	resBody := resBuffer.Bytes()
+	res.Body = ioutil.NopCloser(resBuffer)
 
-	log.Printf("HTTP Response: %v %s\n", res.StatusCode, buf.Bytes())
+	log.Printf("HTTP Response: %v (%d bytes) %s\n", res.StatusCode, len(resBody), resBody)
 
 	return res, nil
 }
