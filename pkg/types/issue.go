@@ -17,9 +17,9 @@ type Issue struct {
 	Milestone      []Milestone    `json:"milestone"`
 	StartDate      *Date          `json:"startDate"`
 	DueDate        *Date          `json:"dueDate"`
-	EstimatedHours *Hour          `json:"estimatedHours"`
-	ActualHours    *Hour          `json:"actualHours"`
-	ParentIssueId  uint64         `json:"parentIssueId"`
+	EstimatedHours *Hours         `json:"estimatedHours"`
+	ActualHours    *Hours         `json:"actualHours"`
+	ParentIssueId  *uint64        `json:"parentIssueId"`
 	CreatedUser    *User          `json:"createdUser"`
 	Created        *Date          `json:"created"`
 	UpdatedUser    *User          `json:"updatedUser"`
