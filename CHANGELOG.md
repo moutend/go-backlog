@@ -1,5 +1,7 @@
 # develop
 
+# v0.1.0
+
 - Rename function `client.NewClient` to `client.New`.
 - Fix some types
 - `Date` supports nil value.
