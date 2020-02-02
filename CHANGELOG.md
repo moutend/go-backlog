@@ -1,5 +1,7 @@
 # develop
 
+- While debugging, fix panic when request body is nil.
+
 # v0.1.0
 
 - Rename function `client.NewClient` to `client.New`.
