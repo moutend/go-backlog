@@ -6,6 +6,14 @@ import (
 
 type Date string
 
+func (d *Date) String() string {
+	if d == nil {
+		return ""
+	}
+
+	return d.Time().Format("2006-01-02")
+}
+
 func (d *Date) Time() time.Time {
 	if d == nil {
 		return time.Time{}

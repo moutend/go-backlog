@@ -2,7 +2,7 @@ package types
 
 type Issue struct {
 	Id             uint64         `json:"id"`
-	ProjectId      uint64         `json:"projectId"`
+	ProjectId      *uint64        `json:"projectId"`
 	IssueKey       string         `json:"issueKey"`
 	KeyId          uint64         `json:"keyId"`
 	IssueType      *IssueType     `json:"issueType"`
@@ -12,9 +12,9 @@ type Issue struct {
 	Priority       *Priority      `json:"priority"`
 	Status         *ProjectStatus `json:"status"`
 	Assignee       *User          `json:"assignee"`
-	Category       []Category     `json:"category"`
-	Versions       []Version      `json:"versions"`
-	Milestone      []Milestone    `json:"milestone"`
+	Category       []*Category    `json:"category"`
+	Versions       []*Version     `json:"versions"`
+	Milestone      []*Milestone   `json:"milestone"`
 	StartDate      *Date          `json:"startDate"`
 	DueDate        *Date          `json:"dueDate"`
 	EstimatedHours *Hours         `json:"estimatedHours"`
