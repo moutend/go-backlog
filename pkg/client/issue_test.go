@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/moutend/go-backlog/internal/testutil"
+	. "github.com/moutend/go-backlog/pkg/types"
 )
 
 func TestAddIssue(t *testing.T) {
@@ -17,20 +18,26 @@ func TestAddIssue(t *testing.T) {
 
 	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
 
-	query := url.Values{}
+	projectId := uint64(62794)
 
-	query.Add("projectId", "62794")
-	query.Add("issueTypeId", "290177")
-	query.Add("priorityId", "4")
-	query.Add("summary", "Issue summary")
+	issue := &Issue{
+		Summary:   "Issue summary",
+		ProjectId: &projectId,
+		IssueType: &IssueType{
+			Id: 290177,
+		},
+		Priority: &Priority{
+			Id: 4,
+		},
+	}
 
-	i, err := client.AddIssue(query)
+	createdIssue, err := client.AddIssue(issue, nil)
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	log.Printf("AddIssue: %+v\n", i)
+	log.Printf("AddIssue: %+v\n", createdIssue)
 }
 
 func TestGetIssue(t *testing.T) {

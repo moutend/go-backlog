@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/url"
 	"path"
@@ -21,16 +22,82 @@ const (
 // For more details, see the API document.
 //
 // https://developer.nulab.com/docs/backlog/api/2/add-issue/#add-issue
-func (c *Client) AddIssue(query url.Values) (*Issue, error) {
-	return c.AddIssueContext(context.Background(), query)
+func (c *Client) AddIssue(issue *Issue, notifiedUsers []*User) (*Issue, error) {
+	return c.AddIssueContext(context.Background(), issue, notifiedUsers)
 }
 
 // AddIssueContext accepts context.
-func (c *Client) AddIssueContext(ctx context.Context, query url.Values) (*Issue, error) {
+func (c *Client) AddIssueContext(ctx context.Context, issue *Issue, notifiedUsers []*User) (*Issue, error) {
 	path, err := c.root.Parse(V2IssuesPath)
 
 	if err != nil {
 		return nil, err
+	}
+	if issue.ProjectId == nil {
+		return nil, fmt.Errorf("issue.ProjectId is required")
+	}
+	if issue.Summary == "" {
+		return nil, fmt.Errorf("issue.Summary is required")
+	}
+	if issue.IssueType == nil {
+		return nil, fmt.Errorf("issue.IssueType is required")
+	}
+	if issue.Priority == nil {
+		return nil, fmt.Errorf("issue.Priority is required")
+	}
+
+	query := url.Values{}
+
+	query.Add("projectId", fmt.Sprint(*issue.ProjectId))
+	query.Add("summary", fmt.Sprint(issue.Summary))
+	query.Add("issueTypeId", fmt.Sprint(issue.IssueType.Id))
+	query.Add("priorityId", fmt.Sprint(issue.Priority.Id))
+
+	if issue.ParentIssueId != nil {
+		query.Add("parentIssueId", fmt.Sprint(*issue.ParentIssueId))
+	}
+	if issue.Description != "" {
+		query.Add("description", issue.Description)
+	}
+	if issue.StartDate != nil {
+		query.Add("startDate", issue.StartDate.String())
+	}
+	if issue.DueDate != nil {
+		query.Add("dueDate", issue.DueDate.String())
+	}
+	if issue.EstimatedHours != nil {
+		query.Add("estimatedHours", issue.EstimatedHours.String())
+	}
+	if issue.ActualHours != nil {
+		query.Add("actualHours", issue.ActualHours.String())
+	}
+	if len(issue.Category) > 0 {
+		for _, category := range issue.Category {
+			query.Add("categoryId", fmt.Sprint(category.Id))
+		}
+	}
+	if len(issue.Versions) > 0 {
+		for _, version := range issue.Versions {
+			query.Add("versionId", fmt.Sprint(version.Id))
+		}
+	}
+	if len(issue.Milestone) > 0 {
+		for _, milestone := range issue.Milestone {
+			query.Add("milestoneId", fmt.Sprint(milestone.Id))
+		}
+	}
+	if issue.Assignee != nil {
+		query.Add("assigneeId", fmt.Sprint(issue.Assignee.Id))
+	}
+	if len(notifiedUsers) > 0 {
+		for _, notifiedUser := range notifiedUsers {
+			query.Add("notifiedUserId", fmt.Sprint(notifiedUser.Id))
+		}
+	}
+	if len(issue.Attachments) > 0 {
+		for _, attachment := range issue.Attachments {
+			query.Add("attachmentId", fmt.Sprint(attachment.Id))
+		}
 	}
 
 	payload := bytes.NewBufferString(query.Encode())
@@ -49,13 +116,13 @@ func (c *Client) AddIssueContext(ctx context.Context, query url.Values) (*Issue,
 		return nil, err
 	}
 
-	var issue *Issue
+	var createdIssue *Issue
 
-	if err := json.Unmarshal(body, &issue); err != nil {
+	if err := json.Unmarshal(body, &createdIssue); err != nil {
 		return nil, err
 	}
 
-	return issue, nil
+	return createdIssue, nil
 }
 
 // GetIssue returns information about issue.
