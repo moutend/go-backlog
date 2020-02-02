@@ -34,17 +34,26 @@ func (t *TestClient) doFakeRequest(req *http.Request) (*http.Response, error) {
 }
 
 func (t *TestClient) doHTTPRequest(req *http.Request) (*http.Response, error) {
+	reqBody := []byte{}
 	reqBuffer := &bytes.Buffer{}
 
+	if req.Body == nil {
+		goto LOGGER
+	}
 	if _, err := io.Copy(reqBuffer, req.Body); err != nil {
 		return nil, err
 	}
 
-	reqBody := reqBuffer.Bytes()
+	reqBody = reqBuffer.Bytes()
 	req.Body = ioutil.NopCloser(reqBuffer)
 
+LOGGER:
+
 	log.Printf("HTTP Request: %v %v\n", req.Method, req.URL)
-	log.Printf("HTTP Payload: (%d bytes) %s\n", len(reqBody), reqBody)
+
+	if len(reqBody) > 0 {
+		log.Printf("HTTP Payload: (%d bytes) %s\n", len(reqBody), reqBody)
+	}
 
 	hc := &http.Client{}
 
