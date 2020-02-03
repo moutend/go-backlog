@@ -1,6 +1,7 @@
 # develop
 
 - While debugging, fix panic when request body is nil.
+- Add `EncodeQuery` and `Uniq` methods to `types.Issue`.
 
 # v0.1.0
 
