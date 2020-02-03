@@ -2,6 +2,8 @@
 
 - While debugging, fix panic when request body is nil.
 - Add `EncodeQuery` and `Uniq` methods to `types.Issue`.
+- Change method signature of `client.Client.AddIssue`.
+- Change method signature of `client.Client.UpdateIssue`.
 
 # v0.1.0
 
