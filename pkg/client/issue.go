@@ -33,6 +33,9 @@ func (c *Client) AddIssueContext(ctx context.Context, issue *Issue, notifiedUser
 	if err != nil {
 		return nil, err
 	}
+	if issue == nil {
+		return nil, fmt.Errorf("issue is required")
+	}
 	if issue.ProjectId == nil {
 		return nil, fmt.Errorf("issue.ProjectId is required")
 	}
@@ -46,57 +49,11 @@ func (c *Client) AddIssueContext(ctx context.Context, issue *Issue, notifiedUser
 		return nil, fmt.Errorf("issue.Priority is required")
 	}
 
-	query := url.Values{}
+	query := issue.EncodeQuery()
 
-	query.Add("projectId", fmt.Sprint(*issue.ProjectId))
-	query.Add("summary", fmt.Sprint(issue.Summary))
-	query.Add("issueTypeId", fmt.Sprint(issue.IssueType.Id))
-	query.Add("priorityId", fmt.Sprint(issue.Priority.Id))
-
-	if issue.ParentIssueId != nil {
-		query.Add("parentIssueId", fmt.Sprint(*issue.ParentIssueId))
-	}
-	if issue.Description != "" {
-		query.Add("description", issue.Description)
-	}
-	if issue.StartDate != nil {
-		query.Add("startDate", issue.StartDate.String())
-	}
-	if issue.DueDate != nil {
-		query.Add("dueDate", issue.DueDate.String())
-	}
-	if issue.EstimatedHours != nil {
-		query.Add("estimatedHours", issue.EstimatedHours.String())
-	}
-	if issue.ActualHours != nil {
-		query.Add("actualHours", issue.ActualHours.String())
-	}
-	if len(issue.Category) > 0 {
-		for _, category := range issue.Category {
-			query.Add("categoryId", fmt.Sprint(category.Id))
-		}
-	}
-	if len(issue.Versions) > 0 {
-		for _, version := range issue.Versions {
-			query.Add("versionId", fmt.Sprint(version.Id))
-		}
-	}
-	if len(issue.Milestone) > 0 {
-		for _, milestone := range issue.Milestone {
-			query.Add("milestoneId", fmt.Sprint(milestone.Id))
-		}
-	}
-	if issue.Assignee != nil {
-		query.Add("assigneeId", fmt.Sprint(issue.Assignee.Id))
-	}
 	if len(notifiedUsers) > 0 {
 		for _, notifiedUser := range notifiedUsers {
 			query.Add("notifiedUserId", fmt.Sprint(notifiedUser.Id))
-		}
-	}
-	if len(issue.Attachments) > 0 {
-		for _, attachment := range issue.Attachments {
-			query.Add("attachmentId", fmt.Sprint(attachment.Id))
 		}
 	}
 
@@ -170,16 +127,31 @@ func (c *Client) GetIssueContext(ctx context.Context, issueKeyOrId string) (*Iss
 // For more details, see the API document.
 //
 // https://developer.nulab.com/docs/backlog/api/2/update-issue/#update-issue
-func (c *Client) UpdateIssue(issueKeyOrId string, query url.Values) (*Issue, error) {
-	return c.UpdateIssueContext(context.Background(), issueKeyOrId, query)
+func (c *Client) UpdateIssue(issue *Issue, notifiedUsers []*User, comment string) (*Issue, error) {
+	return c.UpdateIssueContext(context.Background(), issue, notifiedUsers, comment)
 }
 
 // UpdateIssueContext accepts context.
-func (c *Client) UpdateIssueContext(ctx context.Context, issueKeyOrId string, query url.Values) (*Issue, error) {
-	path, err := c.root.Parse(path.Join(V2IssuesPath, issueKeyOrId))
+func (c *Client) UpdateIssueContext(ctx context.Context, issue *Issue, notifiedUsers []*User, comment string) (*Issue, error) {
+	if issue == nil {
+		return nil, fmt.Errorf("issue is required")
+	}
+
+	path, err := c.root.Parse(path.Join(V2IssuesPath, issue.IssueKey))
 
 	if err != nil {
 		return nil, err
+	}
+
+	query := issue.EncodeQuery()
+
+	if len(notifiedUsers) > 0 {
+		for _, notifiedUser := range notifiedUsers {
+			query.Add("notifiedUserId", fmt.Sprint(notifiedUser.Id))
+		}
+	}
+	if comment != "" {
+		query.Add("comment", comment)
 	}
 
 	payload := bytes.NewBufferString(query.Encode())
@@ -198,13 +170,13 @@ func (c *Client) UpdateIssueContext(ctx context.Context, issueKeyOrId string, qu
 		return nil, err
 	}
 
-	var issue *Issue
+	var updatedIssue *Issue
 
-	if err := json.Unmarshal(body, &issue); err != nil {
+	if err := json.Unmarshal(body, &updatedIssue); err != nil {
 		return nil, err
 	}
 
-	return issue, nil
+	return updatedIssue, nil
 }
 
 // DeleteIssue deletes issue.

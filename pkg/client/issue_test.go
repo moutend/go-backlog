@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/url"
 	"testing"
+	"time"
 
 	"github.com/moutend/go-backlog/internal/testutil"
 	. "github.com/moutend/go-backlog/pkg/types"
@@ -67,11 +68,18 @@ func TestUpdateIssue(t *testing.T) {
 
 	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
 
-	query := url.Values{}
+	projectId := uint64(62794)
 
-	query.Add("summary", "Updated issue summary")
+	issue := &Issue{
+		Summary:   "Updated issue summary " + time.Now().Format("15:04:05"),
+		IssueKey:  "LIFE-4",
+		ProjectId: &projectId,
+		IssueType: &IssueType{
+			Id: 290177,
+		},
+	}
 
-	i, err := client.UpdateIssue("3395955", query)
+	i, err := client.UpdateIssue(issue, nil, "")
 
 	if err != nil {
 		t.Fatal(err)
