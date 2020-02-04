@@ -7,6 +7,7 @@
 - Fix types.
 - Remove unnecessary query value.
 - Add `client.Client.GetAllIssues` method.
+- Add `client.Client.GetAllPullRequests` method.
 
 # v0.1.0
 
