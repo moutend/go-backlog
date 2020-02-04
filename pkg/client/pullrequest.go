@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/url"
 	"path"
+	"time"
 
 	. "github.com/moutend/go-backlog/pkg/types"
 )
@@ -17,20 +18,32 @@ import (
 // For more details, see the API document.
 //
 // https://developer.nulab.com/docs/backlog/api/2/add-pull-request/#add-pull-request
-func (c *Client) AddPullRequest(projectIdOrKey, repositoryIdOrKey string, query url.Values) (*PullRequest, error) {
-	return c.AddPullRequestContext(context.Background(), projectIdOrKey, repositoryIdOrKey, query)
+func (c *Client) AddPullRequest(pullRequest *PullRequest, notifiedUsers []*User) (*PullRequest, error) {
+	return c.AddPullRequestContext(context.Background(), pullRequest, notifiedUsers)
 }
 
 // AddPullRequestContext accepts context.
-func (c *Client) AddPullRequestContext(ctx context.Context, projectIdOrKey, repositoryIdOrName string, query url.Values) (*PullRequest, error) {
+func (c *Client) AddPullRequestContext(ctx context.Context, pullRequest *PullRequest, notifiedUsers []*User) (*PullRequest, error) {
+	if pullRequest == nil {
+		return nil, fmt.Errorf("client: pullRequest is required")
+	}
+
 	path, err := c.root.Parse(path.Join(
-		V2ProjectsPath, projectIdOrKey,
-		"git", "repositories", repositoryIdOrName,
+		V2ProjectsPath, fmt.Sprint(pullRequest.ProjectId),
+		"git", "repositories", fmt.Sprint(pullRequest.RepositoryId),
 		"pullRequests",
 	))
 
 	if err != nil {
 		return nil, err
+	}
+
+	query := pullRequest.EncodeQuery()
+
+	if len(notifiedUsers) > 0 {
+		for _, notifiedUser := range notifiedUsers {
+			query.Add("notifiedUserId", fmt.Sprint(notifiedUser.Id))
+		}
 	}
 
 	payload := bytes.NewBufferString(query.Encode())
@@ -49,13 +62,13 @@ func (c *Client) AddPullRequestContext(ctx context.Context, projectIdOrKey, repo
 		return nil, err
 	}
 
-	var pullRequest *PullRequest
+	var createdPullRequest *PullRequest
 
-	if err := json.Unmarshal(body, &pullRequest); err != nil {
+	if err := json.Unmarshal(body, &createdPullRequest); err != nil {
 		return nil, err
 	}
 
-	return pullRequest, nil
+	return createdPullRequest, nil
 }
 
 // GetPullRequest returns pull reuqest.
@@ -107,20 +120,47 @@ func (c *Client) GetPullRequestContext(ctx context.Context, projectIdOrKey, repo
 // For more details, see the API document.
 //
 // https://developer.nulab.com/docs/backlog/api/2/update-pull-request/#update-pull-request
-func (c *Client) UpdatePullRequest(projectIdOrKey, repositoryIdOrName string, number int64, query url.Values) (*PullRequest, error) {
-	return c.UpdatePullRequestContext(context.Background(), projectIdOrKey, repositoryIdOrName, number, query)
+func (c *Client) UpdatePullRequest(pullRequest *PullRequest, notifiedUsers []*User, comment string) (*PullRequest, error) {
+	return c.UpdatePullRequestContext(context.Background(), pullRequest, notifiedUsers, comment)
 }
 
 // UpdatePullRequestContext accepts context.
-func (c *Client) UpdatePullRequestContext(ctx context.Context, projectIdOrKey, repositoryIdOrName string, number int64, query url.Values) (*PullRequest, error) {
+func (c *Client) UpdatePullRequestContext(ctx context.Context, pullRequest *PullRequest, notifiedUsers []*User, comment string) (*PullRequest, error) {
+	if pullRequest == nil {
+		return nil, fmt.Errorf("client: pullRequest is required")
+	}
+
 	path, err := c.root.Parse(path.Join(
-		V2ProjectsPath, projectIdOrKey,
-		"git", "repositories", repositoryIdOrName,
-		"pullRequests", fmt.Sprint(number),
+		V2ProjectsPath, fmt.Sprint(pullRequest.ProjectId),
+		"git", "repositories", fmt.Sprint(pullRequest.RepositoryId),
+		"pullRequests", fmt.Sprint(pullRequest.Number),
 	))
 
 	if err != nil {
 		return nil, err
+	}
+
+	query := url.Values{}
+
+	if pullRequest.Summary != "" {
+		query.Add("summary", pullRequest.Summary)
+	}
+	if pullRequest.Description != "" {
+		query.Add("description", pullRequest.Description)
+	}
+	if pullRequest.Issue != nil {
+		query.Add("description", fmt.Sprint(pullRequest.Issue.Id))
+	}
+	if pullRequest.Assignee != nil {
+		query.Add("assigneeId", fmt.Sprint(pullRequest.Assignee.Id))
+	}
+	if len(notifiedUsers) > 0 {
+		for _, notifiedUser := range notifiedUsers {
+			query.Add("notifiedUserId", fmt.Sprint(notifiedUser.Id))
+		}
+	}
+	if comment != "" {
+		query.Add("comment", comment)
 	}
 
 	payload := bytes.NewBufferString(query.Encode())
@@ -139,56 +179,13 @@ func (c *Client) UpdatePullRequestContext(ctx context.Context, projectIdOrKey, r
 		return nil, err
 	}
 
-	var pullRequest *PullRequest
+	var updatedPullRequest *PullRequest
 
-	if err := json.Unmarshal(body, &pullRequest); err != nil {
+	if err := json.Unmarshal(body, &updatedPullRequest); err != nil {
 		return nil, err
 	}
 
-	return pullRequest, nil
-}
-
-// GetPullRequests returns list of pull requests.
-//
-// For more details, see the API document.
-//
-// https://developer.nulab.com/docs/backlog/api/2/get-pull-request-list/#get-pull-request-list
-func (c *Client) GetPullRequests(projectIdOrKey, repositoryIdOrName string, query url.Values) ([]*PullRequest, error) {
-	return c.GetPullRequestsContext(context.Background(), projectIdOrKey, repositoryIdOrName, query)
-}
-
-// GetPullRequestsContext accepts context.
-func (c *Client) GetPullRequestsContext(ctx context.Context, projectIdOrKey, repositoryIdOrName string, query url.Values) ([]*PullRequest, error) {
-	path, err := c.root.Parse(path.Join(
-		V2ProjectsPath, projectIdOrKey,
-		"git", "repositories", repositoryIdOrName,
-		"pullRequests"))
-
-	if err != nil {
-		return nil, err
-	}
-
-	res, err := c.getContext(ctx, path, query)
-
-	if err != nil {
-		return nil, err
-	}
-
-	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		return nil, err
-	}
-
-	var prs []*PullRequest
-
-	if err := json.Unmarshal(body, &prs); err != nil {
-		return nil, err
-	}
-
-	return prs, nil
+	return updatedPullRequest, nil
 }
 
 // GetPullRequestsCount returns number of pull requests.
@@ -235,4 +232,85 @@ func (c *Client) GetPullRequestsCountContext(ctx context.Context, projectIdOrKey
 	}
 
 	return v.Count, nil
+}
+
+// GetPullRequests returns list of pull requests.
+//
+// For more details, see the API document.
+//
+// https://developer.nulab.com/docs/backlog/api/2/get-pull-request-list/#get-pull-request-list
+func (c *Client) GetPullRequests(projectIdOrKey, repositoryIdOrName string, query url.Values) ([]*PullRequest, error) {
+	return c.GetPullRequestsContext(context.Background(), projectIdOrKey, repositoryIdOrName, query)
+}
+
+// GetPullRequestsContext accepts context.
+func (c *Client) GetPullRequestsContext(ctx context.Context, projectIdOrKey, repositoryIdOrName string, query url.Values) ([]*PullRequest, error) {
+	path, err := c.root.Parse(path.Join(
+		V2ProjectsPath, projectIdOrKey,
+		"git", "repositories", repositoryIdOrName,
+		"pullRequests"))
+
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.getContext(ctx, path, query)
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var prs []*PullRequest
+
+	if err := json.Unmarshal(body, &prs); err != nil {
+		return nil, err
+	}
+
+	return prs, nil
+}
+
+// GetAllPullRequests returns all pull requests.
+func (c *Client) GetAllPullRequests(projectIdOrKey, repositoryIdOrName string) ([]*PullRequest, error) {
+	return c.GetAllPullRequestsContext(context.Background(), projectIdOrKey, repositoryIdOrName)
+}
+
+// GetAllPullRequestsContext accepts context.
+func (c *Client) GetAllPullRequestsContext(ctx context.Context, projectIdOrKey, repositoryIdOrName string) ([]*PullRequest, error) {
+	count, err := c.GetPullRequestsCount(projectIdOrKey, repositoryIdOrName, nil)
+
+	if err != nil {
+	}
+	allPullRequests := []*PullRequest{}
+
+	offset := 0
+	times := int((count / 100) + 1)
+
+	for i := 0; i < times; i++ {
+		query := url.Values{}
+
+		query.Add("count", "100")
+		query.Add("offset", fmt.Sprint(offset))
+
+		pullRequests, err := c.GetPullRequestsContext(ctx, projectIdOrKey, repositoryIdOrName, query)
+
+		if err != nil {
+			return allPullRequests, err
+		}
+
+		allPullRequests = append(allPullRequests, pullRequests...)
+
+		time.Sleep(250 * time.Millisecond)
+
+		offset += 100
+	}
+
+	return allPullRequests, nil
 }
