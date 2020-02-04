@@ -55,12 +55,12 @@ func (c *Client) GetRepositoriesContext(ctx context.Context, projectKeyOrId stri
 // For more details, see the API document.
 //
 // https://developer.nulab.com/docs/backlog/api/2/get-git-repository/
-func (c *Client) GetRepository(projectKeyOrId, repositoryNameOrId string, query url.Values) (*Repository, error) {
-	return c.GetRepositoryContext(context.Background(), projectKeyOrId, repositoryNameOrId, query)
+func (c *Client) GetRepository(projectKeyOrId, repositoryNameOrId string) (*Repository, error) {
+	return c.GetRepositoryContext(context.Background(), projectKeyOrId, repositoryNameOrId)
 }
 
 // getRepositoryContext accepts context.
-func (c *Client) GetRepositoryContext(ctx context.Context, projectKeyOrId, repositoryNameOrId string, query url.Values) (*Repository, error) {
+func (c *Client) GetRepositoryContext(ctx context.Context, projectKeyOrId, repositoryNameOrId string) (*Repository, error) {
 	path, err := c.root.Parse(path.Join(
 		V2ProjectsPath, projectKeyOrId,
 		"git", "repositories", repositoryNameOrId,
@@ -70,7 +70,7 @@ func (c *Client) GetRepositoryContext(ctx context.Context, projectKeyOrId, repos
 		return nil, err
 	}
 
-	res, err := c.getContext(ctx, path, query)
+	res, err := c.getContext(ctx, path, nil)
 
 	if err != nil {
 		return nil, err

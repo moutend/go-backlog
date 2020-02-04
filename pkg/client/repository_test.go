@@ -34,7 +34,7 @@ func TestGetRepository(t *testing.T) {
 
 	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
 
-	r, err := client.GetRepository("LIFE", "my-test-repo", nil)
+	r, err := client.GetRepository("LIFE", "my-test-repo")
 
 	if err != nil {
 		t.Fatal(err)
