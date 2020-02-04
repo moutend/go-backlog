@@ -8,6 +8,6 @@ type Space struct {
 	ReportSendTime    string `json:"reportSendTime"`
 	TextFormatingRule string `json:"textFormattingRule"`
 	Timezone          string `json:"timezone"`
-	Created           Date   `json:"created"`
-	Updated           Date   `json:"updated"`
+	Created           *Date  `json:"created"`
+	Updated           *Date  `json:"updated"`
 }

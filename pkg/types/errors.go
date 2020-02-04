@@ -1,5 +1,5 @@
 package types
 
 type Errors struct {
-	Errors []Error `json:"errors"`
+	Errors []*Error `json:"errors"`
 }

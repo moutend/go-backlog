@@ -5,8 +5,8 @@ type Milestone struct {
 	ProjectId      int    `json:"projectId"`
 	Name           string `json:"name"`
 	Description    string `json:"description"`
-	StartDate      Date   `json:"startDate"`
-	ReleaseDueDate Date   `json:"releaseDueDate"`
+	StartDate      *Date  `json:"startDate"`
+	ReleaseDueDate *Date  `json:"releaseDueDate"`
 	Archived       bool   `json:"archived"`
 	DisplayOrder   int    `json:"displayOrder"`
 }

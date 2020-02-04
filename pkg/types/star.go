@@ -5,6 +5,6 @@ type Star struct {
 	Comment   string `json:"comment"`
 	URL       string `json:"url"`
 	Title     string `json:"title"`
-	Presenter User   `json:"presenter"`
-	Created   Date   `json:"created"`
+	Presenter *User  `json:"presenter"`
+	Created   *Date  `json:"created"`
 }

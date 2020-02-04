@@ -11,8 +11,8 @@ type Repository struct {
 	SSHURL       string  `json:"sshUrl"`
 	DisplayOrder int     `json:"displayOrder"`
 	PushedAt     *Date   `json:"pushedAt"`
-	CreatedUser  User    `json:"createdUser"`
-	Created      Date    `json:"created"`
-	UpdatedUser  User    `json:"createdUser"`
-	Updated      Date    `json:"created"`
+	CreatedUser  *User   `json:"createdUser"`
+	Created      *Date   `json:"created"`
+	UpdatedUser  *User   `json:"createdUser"`
+	Updated      *Date   `json:"created"`
 }
