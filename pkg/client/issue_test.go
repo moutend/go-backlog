@@ -106,6 +106,40 @@ func TestDeleteIssue(t *testing.T) {
 	log.Printf("DeleteIssue: %+v\n", i)
 }
 
+func TestGetIssueTypes(t *testing.T) {
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
+
+	its, err := client.GetIssueTypes("62794")
+
+	if err != nil {
+		t.Fatal(err)
+	}
+	log.Printf("GetIssueTypes: %+v\n", its)
+}
+
+func TestGetIssuesCount(t *testing.T) {
+	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
+
+	count, err := client.GetIssuesCount(nil)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+	log.Printf("GetIssuesCount: %+v\n", count)
+}
+
 func TestGetIssues(t *testing.T) {
 	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
@@ -129,24 +163,7 @@ func TestGetIssues(t *testing.T) {
 	log.Printf("GetIssues: %+v\n", is)
 }
 
-func TestGetIssuesCount(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
-
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
-
-	count, err := client.GetIssuesCount(nil)
-
-	if err != nil {
-		t.Fatal(err)
-	}
-	log.Printf("GetIssuesCount: %+v\n", count)
-}
-
-func TestGetIssueTypes(t *testing.T) {
+func TestGetAllIssues(t *testing.T) {
 	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
 
 	if err != nil {
@@ -155,10 +172,11 @@ func TestGetIssueTypes(t *testing.T) {
 
 	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
 
-	its, err := client.GetIssueTypes("62794")
+	is, err := client.GetAllIssues()
 
 	if err != nil {
 		t.Fatal(err)
 	}
-	log.Printf("GetIssueTypes: %+v\n", its)
+
+	log.Printf("GetAllIssues: %+v\n", is)
 }

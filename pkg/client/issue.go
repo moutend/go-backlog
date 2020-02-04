@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/url"
 	"path"
+	"time"
 
 	. "github.com/moutend/go-backlog/pkg/types"
 )
@@ -219,24 +220,24 @@ func (c *Client) DeleteIssueContext(ctx context.Context, issueKeyOrId string) (*
 	return issue, nil
 }
 
-// GetIssues returns list of issues.
+// GetIssueTypes returns list of Issue Types in the project.
 //
 // For more details, see the API document.
 //
-// https://developer.nulab.com/docs/backlog/api/2/get-issue-list/#get-issue-list
-func (c *Client) GetIssues(query url.Values) ([]*Issue, error) {
-	return c.GetIssuesContext(context.Background(), query)
+// https://developer.nulab.com/docs/backlog/api/2/get-issue-type-list/#get-issue-type-list
+func (c *Client) GetIssueTypes(projectIdOrKey string) ([]*IssueType, error) {
+	return c.GetIssueTypesContext(context.Background(), projectIdOrKey)
 }
 
-// GetIssuesContext accepts context.
-func (c *Client) GetIssuesContext(ctx context.Context, query url.Values) ([]*Issue, error) {
-	path, err := c.root.Parse(V2IssuesPath)
+// GetIssueTypesContext accepts context.
+func (c *Client) GetIssueTypesContext(ctx context.Context, projectIdOrKey string) ([]*IssueType, error) {
+	path, err := c.root.Parse(path.Join(V2ProjectsPath, projectIdOrKey, "issueTypes"))
 
 	if err != nil {
 		return nil, err
 	}
 
-	res, err := c.getContext(ctx, path, query)
+	res, err := c.getContext(ctx, path, nil)
 
 	if err != nil {
 		return nil, err
@@ -250,13 +251,13 @@ func (c *Client) GetIssuesContext(ctx context.Context, query url.Values) ([]*Iss
 		return nil, err
 	}
 
-	var issues []*Issue
+	var issueTypes []*IssueType
 
-	if err = json.Unmarshal(body, &issues); err != nil {
+	if err := json.Unmarshal(body, &issueTypes); err != nil {
 		return nil, err
 	}
 
-	return issues, nil
+	return issueTypes, nil
 }
 
 // GetIssuesCount returns number of issues.
@@ -301,24 +302,24 @@ func (c *Client) GetIssuesCountContext(ctx context.Context, query url.Values) (i
 	return v.Count, nil
 }
 
-// GetIssueTypes returns list of Issue Types in the project.
+// GetIssues returns list of issues.
 //
 // For more details, see the API document.
 //
-// https://developer.nulab.com/docs/backlog/api/2/get-issue-type-list/#get-issue-type-list
-func (c *Client) GetIssueTypes(projectIdOrKey string) ([]*IssueType, error) {
-	return c.GetIssueTypesContext(context.Background(), projectIdOrKey)
+// https://developer.nulab.com/docs/backlog/api/2/get-issue-list/#get-issue-list
+func (c *Client) GetIssues(query url.Values) ([]*Issue, error) {
+	return c.GetIssuesContext(context.Background(), query)
 }
 
-// GetIssueTypesContext accepts context.
-func (c *Client) GetIssueTypesContext(ctx context.Context, projectIdOrKey string) ([]*IssueType, error) {
-	path, err := c.root.Parse(path.Join(V2ProjectsPath, projectIdOrKey, "issueTypes"))
+// GetIssuesContext accepts context.
+func (c *Client) GetIssuesContext(ctx context.Context, query url.Values) ([]*Issue, error) {
+	path, err := c.root.Parse(V2IssuesPath)
 
 	if err != nil {
 		return nil, err
 	}
 
-	res, err := c.getContext(ctx, path, nil)
+	res, err := c.getContext(ctx, path, query)
 
 	if err != nil {
 		return nil, err
@@ -332,11 +333,53 @@ func (c *Client) GetIssueTypesContext(ctx context.Context, projectIdOrKey string
 		return nil, err
 	}
 
-	var issueTypes []*IssueType
+	var issues []*Issue
 
-	if err := json.Unmarshal(body, &issueTypes); err != nil {
+	if err = json.Unmarshal(body, &issues); err != nil {
 		return nil, err
 	}
 
-	return issueTypes, nil
+	return issues, nil
+}
+
+// GetAllIssues returns all issues.
+func (c *Client) GetAllIssues() ([]*Issue, error) {
+	return c.GetAllIssuesContext(context.Background())
+}
+
+// GetAllIssuesContext accepts context.
+func (c *Client) GetAllIssuesContext(ctx context.Context) ([]*Issue, error) {
+	count, err := c.GetIssuesCount(nil)
+
+	if err != nil {
+		return nil, err
+	}
+
+	allIssues := []*Issue{}
+
+	offset := 0
+	times := int((count / 100) + 1)
+
+	for i := 0; i < times; i++ {
+		query := url.Values{}
+
+		query.Add("sort", "created")
+		query.Add("order", "asc")
+		query.Add("count", "100")
+		query.Add("offset", fmt.Sprint(offset))
+
+		issues, err := c.GetIssuesContext(ctx, query)
+
+		if err != nil {
+			return allIssues, err
+		}
+
+		allIssues = append(allIssues, issues...)
+
+		time.Sleep(250 * time.Millisecond)
+
+		offset += 100
+	}
+
+	return allIssues, nil
 }
