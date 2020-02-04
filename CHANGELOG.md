@@ -5,6 +5,7 @@
 - Change method signature of `client.Client.AddIssue`.
 - Change method signature of `client.Client.UpdateIssue`.
 - Fix types.
+- Remove unnecessary query value.
 
 # v0.1.0
 
