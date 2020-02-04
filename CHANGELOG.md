@@ -6,6 +6,7 @@
 - Change method signature of `client.Client.UpdateIssue`.
 - Fix types.
 - Remove unnecessary query value.
+- Add `client.Client.GetAllIssues` method.
 
 # v0.1.0
 
