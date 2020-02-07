@@ -1,5 +1,7 @@
 # develop
 
+# v0.3.0
+
 - Change method arguments of `client.Client.GetAllIssues`.
 - Remove unnecessary parameter of `client.Client.GetPullRequestsCount`.
 - Fix method arguments of `client.Client.GetPullRequestComments`.
