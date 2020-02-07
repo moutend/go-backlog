@@ -3,6 +3,7 @@
 - Change method arguments of `client.Client.GetAllIssues`.
 - Remove unnecessary parameter of `client.Client.GetPullRequestsCount`.
 - Fix method arguments of `client.Client.GetPullRequestComments`.
+- Fix some types in `types` package.
 
 # v0.2.0
 
