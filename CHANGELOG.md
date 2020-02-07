@@ -1,5 +1,8 @@
 # develop
 
+- Change method arguments of `client.Client.GetAllIssues`.
+- Remove unnecessary parameter of `client.Client.GetPullRequestsCount`.
+
 # v0.2.0
 
 - While debugging, fix panic when request body is nil.
