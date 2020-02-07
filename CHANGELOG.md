@@ -2,6 +2,7 @@
 
 - Change method arguments of `client.Client.GetAllIssues`.
 - Remove unnecessary parameter of `client.Client.GetPullRequestsCount`.
+- Fix method arguments of `client.Client.GetPullRequestComments`.
 
 # v0.2.0
 
