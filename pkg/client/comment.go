@@ -3,6 +3,7 @@ package client
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/url"
 	"path"
@@ -43,15 +44,15 @@ func (c *Client) GetIssueCommentsContext(ctx context.Context, issueIdOrKey strin
 	return comments, nil
 }
 
-func (c *Client) GetPullRequestComments(projectKeyOrId, repositoryNameOrId, number string, query url.Values) ([]*Comment, error) {
+func (c *Client) GetPullRequestComments(projectKeyOrId, repositoryNameOrId string, number int64, query url.Values) ([]*Comment, error) {
 	return c.GetPullRequestCommentsContext(context.Background(), projectKeyOrId, repositoryNameOrId, number, query)
 }
 
-func (c *Client) GetPullRequestCommentsContext(ctx context.Context, projectKeyOrId, repositoryNameOrId string, number string, query url.Values) ([]*Comment, error) {
+func (c *Client) GetPullRequestCommentsContext(ctx context.Context, projectKeyOrId, repositoryNameOrId string, number int64, query url.Values) ([]*Comment, error) {
 	path, err := c.root.Parse(path.Join(
 		V2ProjectsPath, projectKeyOrId,
 		"git", "repositories", repositoryNameOrId,
-		"pullRequests", number, "comments",
+		"pullRequests", fmt.Sprint(number), "comments",
 	))
 	if err != nil {
 		return nil, err

@@ -33,7 +33,7 @@ func TestGetPullRequestComments(t *testing.T) {
 
 	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
 
-	cs, err := client.GetPullRequestComments("62794", "my-test-repo", "1", nil)
+	cs, err := client.GetPullRequestComments("62794", "my-test-repo", 1, nil)
 
 	if err != nil {
 		t.Fatal(err)
