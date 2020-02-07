@@ -193,12 +193,12 @@ func (c *Client) UpdatePullRequestContext(ctx context.Context, pullRequest *Pull
 // For more details, see the API document.
 //
 // https://developer.nulab.com/docs/backlog/api/2/get-number-of-pull-requests/#get-number-of-pull-requests
-func (c *Client) GetPullRequestsCount(projectIdOrKey, repositoryIdOrName string, query url.Values) (int64, error) {
-	return c.GetPullRequestsCountContext(context.Background(), projectIdOrKey, repositoryIdOrName, query)
+func (c *Client) GetPullRequestsCount(projectIdOrKey, repositoryIdOrName string) (int64, error) {
+	return c.GetPullRequestsCountContext(context.Background(), projectIdOrKey, repositoryIdOrName)
 }
 
 // GetPullRequestsCountContext accepts context.
-func (c *Client) GetPullRequestsCountContext(ctx context.Context, projectIdOrKey, repositoryIdOrName string, query url.Values) (int64, error) {
+func (c *Client) GetPullRequestsCountContext(ctx context.Context, projectIdOrKey, repositoryIdOrName string) (int64, error) {
 	path, err := c.root.Parse(path.Join(
 		V2ProjectsPath, projectIdOrKey,
 		"git", "repositories", repositoryIdOrName,
@@ -209,7 +209,7 @@ func (c *Client) GetPullRequestsCountContext(ctx context.Context, projectIdOrKey
 		return -1, err
 	}
 
-	res, err := c.getContext(ctx, path, query)
+	res, err := c.getContext(ctx, path, nil)
 
 	if err != nil {
 		return -1, err
@@ -284,7 +284,7 @@ func (c *Client) GetAllPullRequests(projectIdOrKey, repositoryIdOrName string) (
 
 // GetAllPullRequestsContext accepts context.
 func (c *Client) GetAllPullRequestsContext(ctx context.Context, projectIdOrKey, repositoryIdOrName string) ([]*PullRequest, error) {
-	count, err := c.GetPullRequestsCount(projectIdOrKey, repositoryIdOrName, nil)
+	count, err := c.GetPullRequestsCount(projectIdOrKey, repositoryIdOrName)
 
 	if err != nil {
 	}

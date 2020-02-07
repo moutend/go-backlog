@@ -85,7 +85,7 @@ func TestGetPullRequestsCount(t *testing.T) {
 
 	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
 
-	count, err := client.GetPullRequestsCount("62794", "my-test-repo", nil)
+	count, err := client.GetPullRequestsCount("62794", "my-test-repo")
 
 	if err != nil {
 		t.Fatal(err)
