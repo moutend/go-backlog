@@ -343,13 +343,13 @@ func (c *Client) GetIssuesContext(ctx context.Context, query url.Values) ([]*Iss
 }
 
 // GetAllIssues returns all issues.
-func (c *Client) GetAllIssues() ([]*Issue, error) {
-	return c.GetAllIssuesContext(context.Background())
+func (c *Client) GetAllIssues(maxIssues int, query url.Values) ([]*Issue, error) {
+	return c.GetAllIssuesContext(context.Background(), maxIssues, query)
 }
 
 // GetAllIssuesContext accepts context.
-func (c *Client) GetAllIssuesContext(ctx context.Context) ([]*Issue, error) {
-	count, err := c.GetIssuesCount(nil)
+func (c *Client) GetAllIssuesContext(ctx context.Context, maxIssues int, query url.Values) ([]*Issue, error) {
+	foundIssues, err := c.GetIssuesCount(nil)
 
 	if err != nil {
 		return nil, err
@@ -357,28 +357,40 @@ func (c *Client) GetAllIssuesContext(ctx context.Context) ([]*Issue, error) {
 
 	allIssues := []*Issue{}
 
-	offset := 0
-	times := int((count / 100) + 1)
+	if foundIssues == 0 {
+		return allIssues, nil
+	}
+
+	issuesCount := 0
+	times := int((foundIssues / 100) + 1)
 
 	for i := 0; i < times; i++ {
-		query := url.Values{}
+		if maxIssues > 0 && issuesCount >= maxIssues {
+			break
+		}
 
-		query.Add("sort", "created")
-		query.Add("order", "asc")
-		query.Add("count", "100")
-		query.Add("offset", fmt.Sprint(offset))
+		q := url.Values{}
 
-		issues, err := c.GetIssuesContext(ctx, query)
+		q.Add("count", "100")
+		q.Add("offset", fmt.Sprint(issuesCount))
+
+		for k, vs := range query {
+			for _, v := range vs {
+				q.Add(k, v)
+			}
+		}
+
+		issues, err := c.GetIssuesContext(ctx, q)
 
 		if err != nil {
 			return allIssues, err
 		}
 
+		issuesCount += len(issues)
 		allIssues = append(allIssues, issues...)
 
+		// backlog API doesn't provide rate / limit information, sleep 250 ms to prevent sending many requests at once.
 		time.Sleep(250 * time.Millisecond)
-
-		offset += 100
 	}
 
 	return allIssues, nil

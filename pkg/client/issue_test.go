@@ -172,7 +172,7 @@ func TestGetAllIssues(t *testing.T) {
 
 	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
 
-	is, err := client.GetAllIssues()
+	is, err := client.GetAllIssues(123, nil)
 
 	if err != nil {
 		t.Fatal(err)
