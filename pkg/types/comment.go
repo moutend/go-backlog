@@ -3,7 +3,7 @@ package types
 type Comment struct {
 	Id            uint64          `json:"id"`
 	Content       string          `json:"content"`
-	ChangeLog     []ChangeLog     `json:"changeLog"`
+	ChangeLog     []*ChangeLog    `json:"changeLog"`
 	CreatedUser   *User           `json:"createdUser"`
 	Created       *Date           `json:"created"`
 	Updated       *Date           `json:"updated"`
