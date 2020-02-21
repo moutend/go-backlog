@@ -1,16 +1,18 @@
 # develop
 
+## v0.4.0
+
 - Add error variables.
 - `types.Errors` implements error interface.
 
-# v0.3.0
+## v0.3.0
 
 - Change method arguments of `client.Client.GetAllIssues`.
 - Remove unnecessary parameter of `client.Client.GetPullRequestsCount`.
 - Fix method arguments of `client.Client.GetPullRequestComments`.
 - Fix some types in `types` package.
 
-# v0.2.0
+## v0.2.0
 
 - While debugging, fix panic when request body is nil.
 - Add `EncodeQuery` and `Uniq` methods to `types.Issue`.
@@ -21,7 +23,7 @@
 - Add `client.Client.GetAllIssues` method.
 - Add `client.Client.GetAllPullRequests` method.
 
-# v0.1.0
+## v0.1.0
 
 - Rename function `client.NewClient` to `client.New`.
 - Fix some types
@@ -30,6 +32,6 @@
 - Change parameter of `Client.AddIssue`.
 - Add log messages about payload.
 
-# v0.0.0
+## v0.0.0
 
 Initial version
