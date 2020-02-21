@@ -1,5 +1,7 @@
 # develop
 
+- Fix error message.
+
 ## v0.4.0
 
 - Add error variables.
