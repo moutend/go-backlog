@@ -1,5 +1,7 @@
 # develop
 
+## v0.4.1
+
 - Fix error message.
 
 ## v0.4.0
