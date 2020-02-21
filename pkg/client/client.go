@@ -100,11 +100,8 @@ func validateResponse(res *http.Response) error {
 	if err := json.Unmarshal(body, &e); err != nil {
 		return err
 	}
-	if len(e.Errors) == 0 {
-		fmt.Errorf("error occurs, but error message is empty")
-	}
 
-	return e.Errors[0]
+	return e
 }
 
 func (c *Client) getContext(ctx context.Context, endpoint *url.URL, query url.Values) (*http.Response, error) {
