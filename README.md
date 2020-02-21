@@ -1,5 +1,5 @@
-go-backlog (beta)
-=================
+go-backlog
+==========
 
 [![GitHub release](https://img.shields.io/github/release/moutend/go-backlog.svg?style=flat-square)][release]
 [![Go Documentation](https://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)][godocs]
