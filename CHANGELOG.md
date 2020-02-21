@@ -1,5 +1,8 @@
 # develop
 
+- Add error variables.
+- `types.Errors` implements error interface.
+
 # v0.3.0
 
 - Change method arguments of `client.Client.GetAllIssues`.
