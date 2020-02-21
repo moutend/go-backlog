@@ -29,24 +29,48 @@ func TestErrorsHas(t *testing.T) {
 }
 
 func TestErrorsError(t *testing.T) {
-	e1 := Error{
-		Code:     1,
-		Message:  "message1",
-		MoreInfo: "more info1",
-	}
-	e2 := Error{
-		Code:     2,
-		Message:  "message2",
-		MoreInfo: "more info2",
-	}
-	es := Errors{
-		Errors: []Error{e1, e2},
-	}
+	{
+		e1 := Error{
+			Code:     1,
+			Message:  "message1",
+			MoreInfo: "more info1",
+		}
+		e2 := Error{
+			Code:     2,
+			Message:  "message2",
+			MoreInfo: "more info2",
+		}
+		es := Errors{
+			Errors: []Error{e1, e2},
+		}
 
-	expected := "internal error: message1 (more info1); license error: message2 (more info2)"
-	actual := es.Error()
+		expected := "internal error: message1 (more info1); license error: message2 (more info2)"
+		actual := es.Error()
 
-	if actual != expected {
-		t.Fatalf("actual: %q\nexpected: %q", actual, expected)
+		if actual != expected {
+			t.Fatalf("actual: %q\nexpected: %q", actual, expected)
+		}
+	}
+	{
+		e1 := Error{
+			Code:     1,
+			Message:  "message1",
+			MoreInfo: "",
+		}
+		e2 := Error{
+			Code:     2,
+			Message:  "",
+			MoreInfo: "",
+		}
+		es := Errors{
+			Errors: []Error{e1, e2},
+		}
+
+		expected := "internal error: message1; license error"
+		actual := es.Error()
+
+		if actual != expected {
+			t.Fatalf("actual: %q\nexpected: %q", actual, expected)
+		}
 	}
 }

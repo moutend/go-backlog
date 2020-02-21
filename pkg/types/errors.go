@@ -2,7 +2,6 @@ package types
 
 import (
 	"errors"
-	"fmt"
 )
 
 var (
@@ -70,30 +69,32 @@ func (e Errors) Has(err error) bool {
 	return false
 }
 
+func buildErrorString(e Error) string {
+	s := convertToError(e.Code).Error()
+
+	if e.Message != "" {
+		s += ": " + e.Message
+	}
+	if e.MoreInfo != "" {
+		s += " (" + e.MoreInfo + ")"
+	}
+
+	return s
+}
+
 // Error implements error interface.
 func (e Errors) Error() string {
 	if len(e.Errors) == 0 {
 		return ""
 	}
 
-	result := fmt.Sprintf(
-		"%s: %s (%s)",
-		convertToError(e.Errors[0].Code).Error(),
-		e.Errors[0].Message,
-		e.Errors[0].MoreInfo,
-	)
+	result := buildErrorString(e.Errors[0])
 
 	if len(e.Errors) == 1 {
 		return result
 	}
 	for i := 1; i < len(e.Errors); i++ {
-		result = fmt.Sprintf(
-			"%s; %s: %s (%s)",
-			result,
-			convertToError(e.Errors[i].Code).Error(),
-			e.Errors[i].Message,
-			e.Errors[i].MoreInfo,
-		)
+		result = result + "; " + buildErrorString(e.Errors[i])
 	}
 
 	return result
