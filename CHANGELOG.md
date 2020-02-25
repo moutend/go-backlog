@@ -1,5 +1,12 @@
 # develop
 
+- Add `client.AddWiki`.
+- Add `client.UpdateWiki`.
+- Add `client.DeleteWiki`.
+- Add `client.GetWikiCount`.
+- Add `client.GetWikiTags`.
+- Fix test.
+
 ## v0.4.1
 
 - Fix error message.
