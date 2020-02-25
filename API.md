@@ -1,152 +1,152 @@
 # Supported Backlog API v2 Endpoints
 
-- [x] [Get Space](https://developer.nulab.com/docs/backlog/api/2/get-space/){.sidebar__links}
-- [ ] [Get Recent Updates](https://developer.nulab.com/docs/backlog/api/2/get-recent-updates/){.sidebar__links}
-- [ ] [Get Space Logo](https://developer.nulab.com/docs/backlog/api/2/get-space-logo/){.sidebar__links}
-- [ ] [Get Space Notification](https://developer.nulab.com/docs/backlog/api/2/get-space-notification/){.sidebar__links}
-- [ ] [Update Space Notification](https://developer.nulab.com/docs/backlog/api/2/update-space-notification/){.sidebar__links}
-- [ ] [Get Space Disk Usage](https://developer.nulab.com/docs/backlog/api/2/get-space-disk-usage/){.sidebar__links}
-- [ ] [Post Attachment File](https://developer.nulab.com/docs/backlog/api/2/post-attachment-file/){.sidebar__links}
-- [x] [Get User List](https://developer.nulab.com/docs/backlog/api/2/get-user-list/){.sidebar__links}
-- [ ] [Get User](https://developer.nulab.com/docs/backlog/api/2/get-user/){.sidebar__links}
-- [ ] [Add User](https://developer.nulab.com/docs/backlog/api/2/add-user/){.sidebar__links}
-- [ ] [Update User](https://developer.nulab.com/docs/backlog/api/2/update-user/){.sidebar__links}
-- [ ] [Delete User](https://developer.nulab.com/docs/backlog/api/2/delete-user/){.sidebar__links}
-- [x] [Get Own User](https://developer.nulab.com/docs/backlog/api/2/get-own-user/){.sidebar__links}
-- [ ] [Get User Icon](https://developer.nulab.com/docs/backlog/api/2/get-user-icon/){.sidebar__links}
-- [ ] [Get User Recent Updates](https://developer.nulab.com/docs/backlog/api/2/get-user-recent-updates/){.sidebar__links}
-- [ ] [Get Received Star List](https://developer.nulab.com/docs/backlog/api/2/get-received-star-list/){.sidebar__links}
-- [ ] [Count User Received Stars](https://developer.nulab.com/docs/backlog/api/2/count-user-received-stars/){.sidebar__links}
-- [ ] [Get List of Recently Viewed Issues](https://developer.nulab.com/docs/backlog/api/2/get-list-of-recently-viewed-issues/){.sidebar__links}
-- [ ] [Get List of Recently Viewed Projects](https://developer.nulab.com/docs/backlog/api/2/get-list-of-recently-viewed-projects/){.sidebar__links}
-- [ ] [Get List of Recently Viewed Wikis](https://developer.nulab.com/docs/backlog/api/2/get-list-of-recently-viewed-wikis/){.sidebar__links}
-- [ ] *DEPRECATED* [Get List of Groups](https://developer.nulab.com/docs/backlog/api/2/get-list-of-groups/){.sidebar__links}
-- [ ] *DEPRECATED* [Add Group](https://developer.nulab.com/docs/backlog/api/2/add-group/){.sidebar__links}
-- [ ] *DEPRECATED* [Get Group](https://developer.nulab.com/docs/backlog/api/2/get-group/){.sidebar__links}
-- [ ] *DEPRECATED* [Update Group](https://developer.nulab.com/docs/backlog/api/2/update-group/){.sidebar__links}
-- [ ] *DEPRECATED* [Delete Group](https://developer.nulab.com/docs/backlog/api/2/delete-group/){.sidebar__links}
-- [ ] *DEPRECATED* [Get Status List](https://developer.nulab.com/docs/backlog/api/2/get-status-list/){.sidebar__links}
-- [x] [Get Status List of Project](https://developer.nulab.com/docs/backlog/api/2/get-status-list-of-project/){.sidebar__links}
-- [x] [Get Priority List](https://developer.nulab.com/docs/backlog/api/2/get-priority-list/){.sidebar__links}
-- [ ] [Get Resolution List](https://developer.nulab.com/docs/backlog/api/2/get-resolution-list/){.sidebar__links}
-- [x] [Get Project List](https://developer.nulab.com/docs/backlog/api/2/get-project-list/){.sidebar__links}
-- [ ] [Add Project](https://developer.nulab.com/docs/backlog/api/2/add-project/){.sidebar__links}
-- [x] [Get Project](https://developer.nulab.com/docs/backlog/api/2/get-project/){.sidebar__links}
-- [ ] [Update Project](https://developer.nulab.com/docs/backlog/api/2/update-project/){.sidebar__links}
-- [ ] [Delete Project](https://developer.nulab.com/docs/backlog/api/2/delete-project/){.sidebar__links}
-- [ ] [Get Project Icon](https://developer.nulab.com/docs/backlog/api/2/get-project-icon/){.sidebar__links}
-- [ ] [Get Project Recent Updates](https://developer.nulab.com/docs/backlog/api/2/get-project-recent-updates/){.sidebar__links}
-- [ ] [Add Project User](https://developer.nulab.com/docs/backlog/api/2/add-project-user/){.sidebar__links}
-- [ ] [Get Project User List](https://developer.nulab.com/docs/backlog/api/2/get-project-user-list/){.sidebar__links}
-- [ ] [Delete Project User](https://developer.nulab.com/docs/backlog/api/2/delete-project-user/){.sidebar__links}
-- [ ] [Add Project Administrator](https://developer.nulab.com/docs/backlog/api/2/add-project-administrator/){.sidebar__links}
-- [ ] [Get List of Project Administrators](https://developer.nulab.com/docs/backlog/api/2/get-list-of-project-administrators/){.sidebar__links}
-- [ ] [Delete Project Administrator](https://developer.nulab.com/docs/backlog/api/2/delete-project-administrator/){.sidebar__links}
-- [ ] [Add Status](https://developer.nulab.com/docs/backlog/api/2/add-status/){.sidebar__links}
-- [ ] [Update Status](https://developer.nulab.com/docs/backlog/api/2/update-status/){.sidebar__links}
-- [ ] [Delete Status](https://developer.nulab.com/docs/backlog/api/2/delete-status/){.sidebar__links}
-- [ ] [Update Order of Status](https://developer.nulab.com/docs/backlog/api/2/update-order-of-status/){.sidebar__links}
-- [ ] [Get Issue Type List](https://developer.nulab.com/docs/backlog/api/2/get-issue-type-list/){.sidebar__links}
-- [ ] [Add Issue Type](https://developer.nulab.com/docs/backlog/api/2/add-issue-type/){.sidebar__links}
-- [ ] [Update Issue Type](https://developer.nulab.com/docs/backlog/api/2/update-issue-type/){.sidebar__links}
-- [ ] [Delete Issue Type](https://developer.nulab.com/docs/backlog/api/2/delete-issue-type/){.sidebar__links}
-- [ ] [Get Category List](https://developer.nulab.com/docs/backlog/api/2/get-category-list/){.sidebar__links}
-- [ ] [Add Category](https://developer.nulab.com/docs/backlog/api/2/add-category/){.sidebar__links}
-- [ ] [Update Category](https://developer.nulab.com/docs/backlog/api/2/update-category/){.sidebar__links}
-- [ ] [Delete Category](https://developer.nulab.com/docs/backlog/api/2/delete-category/){.sidebar__links}
-- [ ] [Get Version/Milestone List](https://developer.nulab.com/docs/backlog/api/2/get-version-milestone-list/){.sidebar__links}
-- [ ] [Add Version/Milestone](https://developer.nulab.com/docs/backlog/api/2/add-version-milestone/){.sidebar__links}
-- [ ] [Update Version/Milestone](https://developer.nulab.com/docs/backlog/api/2/update-version-milestone/){.sidebar__links}
-- [ ] [Delete Version](https://developer.nulab.com/docs/backlog/api/2/delete-version/){.sidebar__links}
-- [ ] [Get Custom Field List](https://developer.nulab.com/docs/backlog/api/2/get-custom-field-list/){.sidebar__links}
-- [ ] [Add Custom Field](https://developer.nulab.com/docs/backlog/api/2/add-custom-field/){.sidebar__links}
-- [ ] [Update Custom Field](https://developer.nulab.com/docs/backlog/api/2/update-custom-field/){.sidebar__links}
-- [ ] [Delete Custom Field](https://developer.nulab.com/docs/backlog/api/2/delete-custom-field/){.sidebar__links}
-- [ ] [Add List Item for List Type Custom Field](https://developer.nulab.com/docs/backlog/api/2/add-list-item-for-list-type-custom-field/){.sidebar__links}
-- [ ] [Update List Item for List Type Custom Field](https://developer.nulab.com/docs/backlog/api/2/update-list-item-for-list-type-custom-field/){.sidebar__links}
-- [ ] [Delete List Item for List Type Custom Field](https://developer.nulab.com/docs/backlog/api/2/delete-list-item-for-list-type-custom-field/){.sidebar__links}
-- [ ] [Get List of Shared Files](https://developer.nulab.com/docs/backlog/api/2/get-list-of-shared-files/){.sidebar__links}
-- [ ] [Get File](https://developer.nulab.com/docs/backlog/api/2/get-file/){.sidebar__links}
-- [ ] [Get Project Disk Usage](https://developer.nulab.com/docs/backlog/api/2/get-project-disk-usage/){.sidebar__links}
-- [ ] [Get List of Webhooks](https://developer.nulab.com/docs/backlog/api/2/get-list-of-webhooks/){.sidebar__links}
-- [ ] [Add Webhook](https://developer.nulab.com/docs/backlog/api/2/add-webhook/){.sidebar__links}
-- [ ] [Get Webhook](https://developer.nulab.com/docs/backlog/api/2/get-webhook/){.sidebar__links}
-- [ ] [Update Webhook](https://developer.nulab.com/docs/backlog/api/2/update-webhook/){.sidebar__links}
-- [ ] [Delete Webhook](https://developer.nulab.com/docs/backlog/api/2/delete-webhook/){.sidebar__links}
-- [x] [Get Issue List](https://developer.nulab.com/docs/backlog/api/2/get-issue-list/){.sidebar__links}
-- [x] [Count Issue](https://developer.nulab.com/docs/backlog/api/2/count-issue/){.sidebar__links}
-- [x] [Add Issue](https://developer.nulab.com/docs/backlog/api/2/add-issue/){.sidebar__links}
-- [x] [Get Issue](https://developer.nulab.com/docs/backlog/api/2/get-issue/){.sidebar__links}
-- [x] [Update Issue](https://developer.nulab.com/docs/backlog/api/2/update-issue/){.sidebar__links}
-- [x] [Delete Issue](https://developer.nulab.com/docs/backlog/api/2/delete-issue/){.sidebar__links}
-- [x] [Get Comment List](https://developer.nulab.com/docs/backlog/api/2/get-comment-list/){.sidebar__links}
-- [ ] [Add Comment](https://developer.nulab.com/docs/backlog/api/2/add-comment/){.sidebar__links}
-- [ ] [Count Comment](https://developer.nulab.com/docs/backlog/api/2/count-comment/){.sidebar__links}
-- [ ] [Get Comment](https://developer.nulab.com/docs/backlog/api/2/get-comment/){.sidebar__links}
-- [ ] [Delete Comment](https://developer.nulab.com/docs/backlog/api/2/delete-comment/){.sidebar__links}
-- [ ] [Update comment](https://developer.nulab.com/docs/backlog/api/2/update-comment/){.sidebar__links}
-- [ ] [Get List of Comment Notifications](https://developer.nulab.com/docs/backlog/api/2/get-list-of-comment-notifications/){.sidebar__links}
-- [ ] [Add Comment Notification](https://developer.nulab.com/docs/backlog/api/2/add-comment-notification/){.sidebar__links}
-- [ ] [Get List of Issue Attachments](https://developer.nulab.com/docs/backlog/api/2/get-list-of-issue-attachments/){.sidebar__links}
-- [ ] [Get Issue Attachment](https://developer.nulab.com/docs/backlog/api/2/get-issue-attachment/){.sidebar__links}
-- [ ] [Delete Issue Attachment](https://developer.nulab.com/docs/backlog/api/2/delete-issue-attachment/){.sidebar__links}
-- [ ] [Get Issue Participant List](https://developer.nulab.com/docs/backlog/api/2/get-issue-participant-list/){.sidebar__links}
-- [ ] [Get List of Linked Shared Files](https://developer.nulab.com/docs/backlog/api/2/get-list-of-linked-shared-files/){.sidebar__links}
-- [ ] [Link Shared Files to Issue](https://developer.nulab.com/docs/backlog/api/2/link-shared-files-to-issue/){.sidebar__links}
-- [ ] [Remove Link to Shared File from Issue](https://developer.nulab.com/docs/backlog/api/2/remove-link-to-shared-file-from-issue/){.sidebar__links}
-- [x] [Get Wiki Page List](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-list/){.sidebar__links}
-- [x] [Count Wiki Page](https://developer.nulab.com/docs/backlog/api/2/count-wiki-page/){.sidebar__links}
-- [x] [Get Wiki Page Tag List](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-tag-list/){.sidebar__links}
-- [x] [Add Wiki Page](https://developer.nulab.com/docs/backlog/api/2/add-wiki-page/){.sidebar__links}
-- [x] [Get Wiki Page](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page/){.sidebar__links}
-- [x] [Update Wiki Page](https://developer.nulab.com/docs/backlog/api/2/update-wiki-page/){.sidebar__links}
-- [x] [Delete Wiki Page](https://developer.nulab.com/docs/backlog/api/2/delete-wiki-page/){.sidebar__links}
-- [ ] [Get List of Wiki attachments](https://developer.nulab.com/docs/backlog/api/2/get-list-of-wiki-attachments/){.sidebar__links}
-- [ ] [Attach File to Wiki](https://developer.nulab.com/docs/backlog/api/2/attach-file-to-wiki/){.sidebar__links}
-- [ ] [Get Wiki Page Attachment](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-attachment/){.sidebar__links}
-- [ ] [Remove Wiki Attachment](https://developer.nulab.com/docs/backlog/api/2/remove-wiki-attachment/){.sidebar__links}
-- [ ] [Get List of Shared Files on Wiki](https://developer.nulab.com/docs/backlog/api/2/get-list-of-shared-files-on-wiki/){.sidebar__links}
-- [ ] [Link Shared Files to Wiki](https://developer.nulab.com/docs/backlog/api/2/link-shared-files-to-wiki/){.sidebar__links}
-- [ ] [Remove Link to Shared File from Wiki](https://developer.nulab.com/docs/backlog/api/2/remove-link-to-shared-file-from-wiki/){.sidebar__links}
-- [ ] [Get Wiki Page History](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-history/){.sidebar__links}
-- [ ] [Get Wiki Page Star](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-star/){.sidebar__links}
-- [ ] [Add Star](https://developer.nulab.com/docs/backlog/api/2/add-star/){.sidebar__links}
-- [x] [Get Notification](https://developer.nulab.com/docs/backlog/api/2/get-notification/){.sidebar__links}
-- [ ] [Count Notification](https://developer.nulab.com/docs/backlog/api/2/count-notification/){.sidebar__links}
-- [ ] [Reset Unread Notification Count](https://developer.nulab.com/docs/backlog/api/2/reset-unread-notification-count/){.sidebar__links}
-- [ ] [Read Notification](https://developer.nulab.com/docs/backlog/api/2/read-notification/){.sidebar__links}
-- [x] [Get List of Git Repositories](https://developer.nulab.com/docs/backlog/api/2/get-list-of-git-repositories/){.sidebar__links}
-- [x] [Get Git Repository](https://developer.nulab.com/docs/backlog/api/2/get-git-repository/){.sidebar__links}
-- [x] [Get Pull Request List](https://developer.nulab.com/docs/backlog/api/2/get-pull-request-list/){.sidebar__links}
-- [x] [Get Number of Pull Requests](https://developer.nulab.com/docs/backlog/api/2/get-number-of-pull-requests/){.sidebar__links}
-- [x] [Add Pull Request](https://developer.nulab.com/docs/backlog/api/2/add-pull-request/){.sidebar__links}
-- [x] [Get Pull Request](https://developer.nulab.com/docs/backlog/api/2/get-pull-request/){.sidebar__links}
-- [x] [Update Pull Request](https://developer.nulab.com/docs/backlog/api/2/update-pull-request/){.sidebar__links}
-- [x] [Get Pull Request Comment](https://developer.nulab.com/docs/backlog/api/2/get-pull-request-comment/){.sidebar__links}
-- [ ] [Add Pull Request Comment](https://developer.nulab.com/docs/backlog/api/2/add-pull-request-comment/){.sidebar__links}
-- [ ] [Get Number of Pull Request Comments](https://developer.nulab.com/docs/backlog/api/2/get-number-of-pull-request-comments/){.sidebar__links}
-- [ ] [Update Pull Request Comment Information](https://developer.nulab.com/docs/backlog/api/2/update-pull-request-comment-information/){.sidebar__links}
-- [ ] [Get List of Pull Request Attachment](https://developer.nulab.com/docs/backlog/api/2/get-list-of-pull-request-attachment/){.sidebar__links}
-- [ ] [Download Pull Request Attachment](https://developer.nulab.com/docs/backlog/api/2/download-pull-request-attachment/){.sidebar__links}
-- [ ] [Delete Pull Request Attachments](https://developer.nulab.com/docs/backlog/api/2/delete-pull-request-attachments/){.sidebar__links}
-- [ ] [Get Watching List](https://developer.nulab.com/docs/backlog/api/2/get-watching-list/){.sidebar__links}
-- [ ] [Count Watching](https://developer.nulab.com/docs/backlog/api/2/count-watching/){.sidebar__links}
-- [ ] [Get Watching](https://developer.nulab.com/docs/backlog/api/2/get-watching/){.sidebar__links}
-- [ ] [Add Watching](https://developer.nulab.com/docs/backlog/api/2/add-watching/){.sidebar__links}
-- [ ] [Update Watching](https://developer.nulab.com/docs/backlog/api/2/update-watching/){.sidebar__links}
-- [ ] [Delete Watching](https://developer.nulab.com/docs/backlog/api/2/delete-watching/){.sidebar__links}
-- [ ] [Mark Watching as Read](https://developer.nulab.com/docs/backlog/api/2/mark-watching-as-read/){.sidebar__links}
-- [ ] *DEPRECATED* [Get Project Group List](https://developer.nulab.com/docs/backlog/api/2/get-project-group-list/){.sidebar__links}
-- [ ] *DEPRECATED* [Add Project Group](https://developer.nulab.com/docs/backlog/api/2/add-project-group/){.sidebar__links}
-- [ ] *DEPRECATED* [Delete Project Group](https://developer.nulab.com/docs/backlog/api/2/delete-project-group/){.sidebar__links}
-- [ ] *DEPRECATED* [Get Group Icon](https://developer.nulab.com/docs/backlog/api/2/get-group-icon/){.sidebar__links}
-- [ ] [Get Licence](https://developer.nulab.com/docs/backlog/api/2/get-licence/){.sidebar__links}
-- [ ] [Get List of Teams](https://developer.nulab.com/docs/backlog/api/2/get-list-of-teams/){.sidebar__links}
-- [ ] [Add Team](https://developer.nulab.com/docs/backlog/api/2/add-team/){.sidebar__links}
-- [ ] [Get Team](https://developer.nulab.com/docs/backlog/api/2/get-team/){.sidebar__links}
-- [ ] [Update Team](https://developer.nulab.com/docs/backlog/api/2/update-team/){.sidebar__links}
-- [ ] [Delete Team](https://developer.nulab.com/docs/backlog/api/2/delete-team/){.sidebar__links}
-- [ ] [Get Team Icon](https://developer.nulab.com/docs/backlog/api/2/get-team-icon/){.sidebar__links}
-- [ ] [Get Project Team List](https://developer.nulab.com/docs/backlog/api/2/get-project-team-list/){.sidebar__links}
-- [ ] [Add Project Team](https://developer.nulab.com/docs/backlog/api/2/add-project-team/){.sidebar__links}
-- [ ] [Delete Project Team](https://developer.nulab.com/docs/backlog/api/2/delete-project-team/){.sidebar__links}
+- [x] [Get Space](https://developer.nulab.com/docs/backlog/api/2/get-space/)
+- [ ] [Get Recent Updates](https://developer.nulab.com/docs/backlog/api/2/get-recent-updates/)
+- [ ] [Get Space Logo](https://developer.nulab.com/docs/backlog/api/2/get-space-logo/)
+- [ ] [Get Space Notification](https://developer.nulab.com/docs/backlog/api/2/get-space-notification/)
+- [ ] [Update Space Notification](https://developer.nulab.com/docs/backlog/api/2/update-space-notification/)
+- [ ] [Get Space Disk Usage](https://developer.nulab.com/docs/backlog/api/2/get-space-disk-usage/)
+- [ ] [Post Attachment File](https://developer.nulab.com/docs/backlog/api/2/post-attachment-file/)
+- [x] [Get User List](https://developer.nulab.com/docs/backlog/api/2/get-user-list/)
+- [ ] [Get User](https://developer.nulab.com/docs/backlog/api/2/get-user/)
+- [ ] [Add User](https://developer.nulab.com/docs/backlog/api/2/add-user/)
+- [ ] [Update User](https://developer.nulab.com/docs/backlog/api/2/update-user/)
+- [ ] [Delete User](https://developer.nulab.com/docs/backlog/api/2/delete-user/)
+- [x] [Get Own User](https://developer.nulab.com/docs/backlog/api/2/get-own-user/)
+- [ ] [Get User Icon](https://developer.nulab.com/docs/backlog/api/2/get-user-icon/)
+- [ ] [Get User Recent Updates](https://developer.nulab.com/docs/backlog/api/2/get-user-recent-updates/)
+- [ ] [Get Received Star List](https://developer.nulab.com/docs/backlog/api/2/get-received-star-list/)
+- [ ] [Count User Received Stars](https://developer.nulab.com/docs/backlog/api/2/count-user-received-stars/)
+- [ ] [Get List of Recently Viewed Issues](https://developer.nulab.com/docs/backlog/api/2/get-list-of-recently-viewed-issues/)
+- [ ] [Get List of Recently Viewed Projects](https://developer.nulab.com/docs/backlog/api/2/get-list-of-recently-viewed-projects/)
+- [ ] [Get List of Recently Viewed Wikis](https://developer.nulab.com/docs/backlog/api/2/get-list-of-recently-viewed-wikis/)
+- [ ] *DEPRECATED* [Get List of Groups](https://developer.nulab.com/docs/backlog/api/2/get-list-of-groups/)
+- [ ] *DEPRECATED* [Add Group](https://developer.nulab.com/docs/backlog/api/2/add-group/)
+- [ ] *DEPRECATED* [Get Group](https://developer.nulab.com/docs/backlog/api/2/get-group/)
+- [ ] *DEPRECATED* [Update Group](https://developer.nulab.com/docs/backlog/api/2/update-group/)
+- [ ] *DEPRECATED* [Delete Group](https://developer.nulab.com/docs/backlog/api/2/delete-group/)
+- [ ] *DEPRECATED* [Get Status List](https://developer.nulab.com/docs/backlog/api/2/get-status-list/)
+- [x] [Get Status List of Project](https://developer.nulab.com/docs/backlog/api/2/get-status-list-of-project/)
+- [x] [Get Priority List](https://developer.nulab.com/docs/backlog/api/2/get-priority-list/)
+- [ ] [Get Resolution List](https://developer.nulab.com/docs/backlog/api/2/get-resolution-list/)
+- [x] [Get Project List](https://developer.nulab.com/docs/backlog/api/2/get-project-list/)
+- [ ] [Add Project](https://developer.nulab.com/docs/backlog/api/2/add-project/)
+- [x] [Get Project](https://developer.nulab.com/docs/backlog/api/2/get-project/)
+- [ ] [Update Project](https://developer.nulab.com/docs/backlog/api/2/update-project/)
+- [ ] [Delete Project](https://developer.nulab.com/docs/backlog/api/2/delete-project/)
+- [ ] [Get Project Icon](https://developer.nulab.com/docs/backlog/api/2/get-project-icon/)
+- [ ] [Get Project Recent Updates](https://developer.nulab.com/docs/backlog/api/2/get-project-recent-updates/)
+- [ ] [Add Project User](https://developer.nulab.com/docs/backlog/api/2/add-project-user/)
+- [ ] [Get Project User List](https://developer.nulab.com/docs/backlog/api/2/get-project-user-list/)
+- [ ] [Delete Project User](https://developer.nulab.com/docs/backlog/api/2/delete-project-user/)
+- [ ] [Add Project Administrator](https://developer.nulab.com/docs/backlog/api/2/add-project-administrator/)
+- [ ] [Get List of Project Administrators](https://developer.nulab.com/docs/backlog/api/2/get-list-of-project-administrators/)
+- [ ] [Delete Project Administrator](https://developer.nulab.com/docs/backlog/api/2/delete-project-administrator/)
+- [ ] [Add Status](https://developer.nulab.com/docs/backlog/api/2/add-status/)
+- [ ] [Update Status](https://developer.nulab.com/docs/backlog/api/2/update-status/)
+- [ ] [Delete Status](https://developer.nulab.com/docs/backlog/api/2/delete-status/)
+- [ ] [Update Order of Status](https://developer.nulab.com/docs/backlog/api/2/update-order-of-status/)
+- [ ] [Get Issue Type List](https://developer.nulab.com/docs/backlog/api/2/get-issue-type-list/)
+- [ ] [Add Issue Type](https://developer.nulab.com/docs/backlog/api/2/add-issue-type/)
+- [ ] [Update Issue Type](https://developer.nulab.com/docs/backlog/api/2/update-issue-type/)
+- [ ] [Delete Issue Type](https://developer.nulab.com/docs/backlog/api/2/delete-issue-type/)
+- [ ] [Get Category List](https://developer.nulab.com/docs/backlog/api/2/get-category-list/)
+- [ ] [Add Category](https://developer.nulab.com/docs/backlog/api/2/add-category/)
+- [ ] [Update Category](https://developer.nulab.com/docs/backlog/api/2/update-category/)
+- [ ] [Delete Category](https://developer.nulab.com/docs/backlog/api/2/delete-category/)
+- [ ] [Get Version/Milestone List](https://developer.nulab.com/docs/backlog/api/2/get-version-milestone-list/)
+- [ ] [Add Version/Milestone](https://developer.nulab.com/docs/backlog/api/2/add-version-milestone/)
+- [ ] [Update Version/Milestone](https://developer.nulab.com/docs/backlog/api/2/update-version-milestone/)
+- [ ] [Delete Version](https://developer.nulab.com/docs/backlog/api/2/delete-version/)
+- [ ] [Get Custom Field List](https://developer.nulab.com/docs/backlog/api/2/get-custom-field-list/)
+- [ ] [Add Custom Field](https://developer.nulab.com/docs/backlog/api/2/add-custom-field/)
+- [ ] [Update Custom Field](https://developer.nulab.com/docs/backlog/api/2/update-custom-field/)
+- [ ] [Delete Custom Field](https://developer.nulab.com/docs/backlog/api/2/delete-custom-field/)
+- [ ] [Add List Item for List Type Custom Field](https://developer.nulab.com/docs/backlog/api/2/add-list-item-for-list-type-custom-field/)
+- [ ] [Update List Item for List Type Custom Field](https://developer.nulab.com/docs/backlog/api/2/update-list-item-for-list-type-custom-field/)
+- [ ] [Delete List Item for List Type Custom Field](https://developer.nulab.com/docs/backlog/api/2/delete-list-item-for-list-type-custom-field/)
+- [ ] [Get List of Shared Files](https://developer.nulab.com/docs/backlog/api/2/get-list-of-shared-files/)
+- [ ] [Get File](https://developer.nulab.com/docs/backlog/api/2/get-file/)
+- [ ] [Get Project Disk Usage](https://developer.nulab.com/docs/backlog/api/2/get-project-disk-usage/)
+- [ ] [Get List of Webhooks](https://developer.nulab.com/docs/backlog/api/2/get-list-of-webhooks/)
+- [ ] [Add Webhook](https://developer.nulab.com/docs/backlog/api/2/add-webhook/)
+- [ ] [Get Webhook](https://developer.nulab.com/docs/backlog/api/2/get-webhook/)
+- [ ] [Update Webhook](https://developer.nulab.com/docs/backlog/api/2/update-webhook/)
+- [ ] [Delete Webhook](https://developer.nulab.com/docs/backlog/api/2/delete-webhook/)
+- [x] [Get Issue List](https://developer.nulab.com/docs/backlog/api/2/get-issue-list/)
+- [x] [Count Issue](https://developer.nulab.com/docs/backlog/api/2/count-issue/)
+- [x] [Add Issue](https://developer.nulab.com/docs/backlog/api/2/add-issue/)
+- [x] [Get Issue](https://developer.nulab.com/docs/backlog/api/2/get-issue/)
+- [x] [Update Issue](https://developer.nulab.com/docs/backlog/api/2/update-issue/)
+- [x] [Delete Issue](https://developer.nulab.com/docs/backlog/api/2/delete-issue/)
+- [x] [Get Comment List](https://developer.nulab.com/docs/backlog/api/2/get-comment-list/)
+- [ ] [Add Comment](https://developer.nulab.com/docs/backlog/api/2/add-comment/)
+- [ ] [Count Comment](https://developer.nulab.com/docs/backlog/api/2/count-comment/)
+- [ ] [Get Comment](https://developer.nulab.com/docs/backlog/api/2/get-comment/)
+- [ ] [Delete Comment](https://developer.nulab.com/docs/backlog/api/2/delete-comment/)
+- [ ] [Update comment](https://developer.nulab.com/docs/backlog/api/2/update-comment/)
+- [ ] [Get List of Comment Notifications](https://developer.nulab.com/docs/backlog/api/2/get-list-of-comment-notifications/)
+- [ ] [Add Comment Notification](https://developer.nulab.com/docs/backlog/api/2/add-comment-notification/)
+- [ ] [Get List of Issue Attachments](https://developer.nulab.com/docs/backlog/api/2/get-list-of-issue-attachments/)
+- [ ] [Get Issue Attachment](https://developer.nulab.com/docs/backlog/api/2/get-issue-attachment/)
+- [ ] [Delete Issue Attachment](https://developer.nulab.com/docs/backlog/api/2/delete-issue-attachment/)
+- [ ] [Get Issue Participant List](https://developer.nulab.com/docs/backlog/api/2/get-issue-participant-list/)
+- [ ] [Get List of Linked Shared Files](https://developer.nulab.com/docs/backlog/api/2/get-list-of-linked-shared-files/)
+- [ ] [Link Shared Files to Issue](https://developer.nulab.com/docs/backlog/api/2/link-shared-files-to-issue/)
+- [ ] [Remove Link to Shared File from Issue](https://developer.nulab.com/docs/backlog/api/2/remove-link-to-shared-file-from-issue/)
+- [x] [Get Wiki Page List](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-list/)
+- [x] [Count Wiki Page](https://developer.nulab.com/docs/backlog/api/2/count-wiki-page/)
+- [x] [Get Wiki Page Tag List](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-tag-list/)
+- [x] [Add Wiki Page](https://developer.nulab.com/docs/backlog/api/2/add-wiki-page/)
+- [x] [Get Wiki Page](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page/)
+- [x] [Update Wiki Page](https://developer.nulab.com/docs/backlog/api/2/update-wiki-page/)
+- [x] [Delete Wiki Page](https://developer.nulab.com/docs/backlog/api/2/delete-wiki-page/)
+- [ ] [Get List of Wiki attachments](https://developer.nulab.com/docs/backlog/api/2/get-list-of-wiki-attachments/)
+- [ ] [Attach File to Wiki](https://developer.nulab.com/docs/backlog/api/2/attach-file-to-wiki/)
+- [ ] [Get Wiki Page Attachment](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-attachment/)
+- [ ] [Remove Wiki Attachment](https://developer.nulab.com/docs/backlog/api/2/remove-wiki-attachment/)
+- [ ] [Get List of Shared Files on Wiki](https://developer.nulab.com/docs/backlog/api/2/get-list-of-shared-files-on-wiki/)
+- [ ] [Link Shared Files to Wiki](https://developer.nulab.com/docs/backlog/api/2/link-shared-files-to-wiki/)
+- [ ] [Remove Link to Shared File from Wiki](https://developer.nulab.com/docs/backlog/api/2/remove-link-to-shared-file-from-wiki/)
+- [ ] [Get Wiki Page History](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-history/)
+- [ ] [Get Wiki Page Star](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-star/)
+- [ ] [Add Star](https://developer.nulab.com/docs/backlog/api/2/add-star/)
+- [x] [Get Notification](https://developer.nulab.com/docs/backlog/api/2/get-notification/)
+- [ ] [Count Notification](https://developer.nulab.com/docs/backlog/api/2/count-notification/)
+- [ ] [Reset Unread Notification Count](https://developer.nulab.com/docs/backlog/api/2/reset-unread-notification-count/)
+- [ ] [Read Notification](https://developer.nulab.com/docs/backlog/api/2/read-notification/)
+- [x] [Get List of Git Repositories](https://developer.nulab.com/docs/backlog/api/2/get-list-of-git-repositories/)
+- [x] [Get Git Repository](https://developer.nulab.com/docs/backlog/api/2/get-git-repository/)
+- [x] [Get Pull Request List](https://developer.nulab.com/docs/backlog/api/2/get-pull-request-list/)
+- [x] [Get Number of Pull Requests](https://developer.nulab.com/docs/backlog/api/2/get-number-of-pull-requests/)
+- [x] [Add Pull Request](https://developer.nulab.com/docs/backlog/api/2/add-pull-request/)
+- [x] [Get Pull Request](https://developer.nulab.com/docs/backlog/api/2/get-pull-request/)
+- [x] [Update Pull Request](https://developer.nulab.com/docs/backlog/api/2/update-pull-request/)
+- [x] [Get Pull Request Comment](https://developer.nulab.com/docs/backlog/api/2/get-pull-request-comment/)
+- [ ] [Add Pull Request Comment](https://developer.nulab.com/docs/backlog/api/2/add-pull-request-comment/)
+- [ ] [Get Number of Pull Request Comments](https://developer.nulab.com/docs/backlog/api/2/get-number-of-pull-request-comments/)
+- [ ] [Update Pull Request Comment Information](https://developer.nulab.com/docs/backlog/api/2/update-pull-request-comment-information/)
+- [ ] [Get List of Pull Request Attachment](https://developer.nulab.com/docs/backlog/api/2/get-list-of-pull-request-attachment/)
+- [ ] [Download Pull Request Attachment](https://developer.nulab.com/docs/backlog/api/2/download-pull-request-attachment/)
+- [ ] [Delete Pull Request Attachments](https://developer.nulab.com/docs/backlog/api/2/delete-pull-request-attachments/)
+- [ ] [Get Watching List](https://developer.nulab.com/docs/backlog/api/2/get-watching-list/)
+- [ ] [Count Watching](https://developer.nulab.com/docs/backlog/api/2/count-watching/)
+- [ ] [Get Watching](https://developer.nulab.com/docs/backlog/api/2/get-watching/)
+- [ ] [Add Watching](https://developer.nulab.com/docs/backlog/api/2/add-watching/)
+- [ ] [Update Watching](https://developer.nulab.com/docs/backlog/api/2/update-watching/)
+- [ ] [Delete Watching](https://developer.nulab.com/docs/backlog/api/2/delete-watching/)
+- [ ] [Mark Watching as Read](https://developer.nulab.com/docs/backlog/api/2/mark-watching-as-read/)
+- [ ] *DEPRECATED* [Get Project Group List](https://developer.nulab.com/docs/backlog/api/2/get-project-group-list/)
+- [ ] *DEPRECATED* [Add Project Group](https://developer.nulab.com/docs/backlog/api/2/add-project-group/)
+- [ ] *DEPRECATED* [Delete Project Group](https://developer.nulab.com/docs/backlog/api/2/delete-project-group/)
+- [ ] *DEPRECATED* [Get Group Icon](https://developer.nulab.com/docs/backlog/api/2/get-group-icon/)
+- [ ] [Get Licence](https://developer.nulab.com/docs/backlog/api/2/get-licence/)
+- [ ] [Get List of Teams](https://developer.nulab.com/docs/backlog/api/2/get-list-of-teams/)
+- [ ] [Add Team](https://developer.nulab.com/docs/backlog/api/2/add-team/)
+- [ ] [Get Team](https://developer.nulab.com/docs/backlog/api/2/get-team/)
+- [ ] [Update Team](https://developer.nulab.com/docs/backlog/api/2/update-team/)
+- [ ] [Delete Team](https://developer.nulab.com/docs/backlog/api/2/delete-team/)
+- [ ] [Get Team Icon](https://developer.nulab.com/docs/backlog/api/2/get-team-icon/)
+- [ ] [Get Project Team List](https://developer.nulab.com/docs/backlog/api/2/get-project-team-list/)
+- [ ] [Add Project Team](https://developer.nulab.com/docs/backlog/api/2/add-project-team/)
+- [ ] [Delete Project Team](https://developer.nulab.com/docs/backlog/api/2/delete-project-team/)
