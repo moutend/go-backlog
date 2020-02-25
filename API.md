@@ -95,12 +95,12 @@
 - [ ] [Link Shared Files to Issue](https://developer.nulab.com/docs/backlog/api/2/link-shared-files-to-issue/){.sidebar__links}
 - [ ] [Remove Link to Shared File from Issue](https://developer.nulab.com/docs/backlog/api/2/remove-link-to-shared-file-from-issue/){.sidebar__links}
 - [x] [Get Wiki Page List](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-list/){.sidebar__links}
-- [ ] [Count Wiki Page](https://developer.nulab.com/docs/backlog/api/2/count-wiki-page/){.sidebar__links}
-- [ ] [Get Wiki Page Tag List](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-tag-list/){.sidebar__links}
-- [ ] [Add Wiki Page](https://developer.nulab.com/docs/backlog/api/2/add-wiki-page/){.sidebar__links}
+- [x] [Count Wiki Page](https://developer.nulab.com/docs/backlog/api/2/count-wiki-page/){.sidebar__links}
+- [x] [Get Wiki Page Tag List](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-tag-list/){.sidebar__links}
+- [x] [Add Wiki Page](https://developer.nulab.com/docs/backlog/api/2/add-wiki-page/){.sidebar__links}
 - [x] [Get Wiki Page](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page/){.sidebar__links}
-- [ ] [Update Wiki Page](https://developer.nulab.com/docs/backlog/api/2/update-wiki-page/){.sidebar__links}
-- [ ] [Delete Wiki Page](https://developer.nulab.com/docs/backlog/api/2/delete-wiki-page/){.sidebar__links}
+- [x] [Update Wiki Page](https://developer.nulab.com/docs/backlog/api/2/update-wiki-page/){.sidebar__links}
+- [x] [Delete Wiki Page](https://developer.nulab.com/docs/backlog/api/2/delete-wiki-page/){.sidebar__links}
 - [ ] [Get List of Wiki attachments](https://developer.nulab.com/docs/backlog/api/2/get-list-of-wiki-attachments/){.sidebar__links}
 - [ ] [Attach File to Wiki](https://developer.nulab.com/docs/backlog/api/2/attach-file-to-wiki/){.sidebar__links}
 - [ ] [Get Wiki Page Attachment](https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-attachment/){.sidebar__links}
