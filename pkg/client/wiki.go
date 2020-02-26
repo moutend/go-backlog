@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"mime"
 	"net/url"
 	"path"
 
@@ -344,4 +345,180 @@ func (c *Client) GetWikiTagsContext(ctx context.Context, projectIdOrKey string) 
 	}
 
 	return tags, nil
+}
+
+// GetWikiAttachments gets list of files attached to Wiki.
+//
+// For more details, see the API document.
+//
+// https://developer.nulab.com/docs/backlog/api/2/get-list-of-wiki-attachments/#status-line-response-header
+func (c *Client) GetWikiAttachments(wikiId uint64) ([]*Attachment, error) {
+	return c.GetWikiAttachmentsContext(context.Background(), wikiId)
+}
+
+// GetWikiAttachmentsContext accepts context.
+func (c *Client) GetWikiAttachmentsContext(ctx context.Context, wikiId uint64) ([]*Attachment, error) {
+	path, err := c.root.Parse(path.Join(V2WikisPath, fmt.Sprint(wikiId), "attachments"))
+
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.getContext(ctx, path, nil)
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var attachments []*Attachment
+
+	if err := json.Unmarshal(body, &attachments); err != nil {
+		return nil, err
+	}
+
+	return attachments, nil
+}
+
+// DeleteWikiAttachment removes files attached to Wiki.
+//
+// For more details, see the API document.
+//
+// https://developer.nulab.com/docs/backlog/api/2/remove-wiki-attachment/#remove-wiki-attachment
+func (c *Client) DeleteWikiAttachment(wikiId, attachmentId uint64) (*Attachment, error) {
+	return c.DeleteWikiAttachmentContext(context.Background(), wikiId, attachmentId)
+}
+
+// DeleteWikiAttachmentContext accepts context.
+func (c *Client) DeleteWikiAttachmentContext(ctx context.Context, wikiId, attachmentId uint64) (*Attachment, error) {
+	path, err := c.root.Parse(path.Join(
+		V2WikisPath, fmt.Sprint(wikiId),
+		"attachments", fmt.Sprint(attachmentId)))
+
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.deleteContext(ctx, path, nil)
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var attachment *Attachment
+
+	if err := json.Unmarshal(body, &attachment); err != nil {
+		return nil, err
+	}
+
+	return attachment, nil
+}
+
+// CreateWikiAttachment creates and attaches file to Wiki
+//
+// For more details, see the API document.
+//
+// https://developer.nulab.com/docs/backlog/api/2/attach-file-to-wiki/#url-parameters
+func (c *Client) CreateWikiAttachment(wikiId uint64, filepath string) (*Attachment, error) {
+	return c.CreateWikiAttachmentContext(context.Background(), wikiId, filepath)
+}
+
+// CreateWikiAttachmentContext accepts context.
+func (c *Client) CreateWikiAttachmentContext(ctx context.Context, wikiId uint64, filepath string) (*Attachment, error) {
+	attachment, err := c.PostAttachmentContext(ctx, filepath)
+
+	if err != nil {
+		return nil, err
+	}
+
+	path, err := c.root.Parse(path.Join(V2WikisPath, fmt.Sprint(wikiId), "attachments"))
+
+	if err != nil {
+		return nil, err
+	}
+
+	query := url.Values{}
+	query.Add("attachmentId", fmt.Sprint(attachment.Id))
+	payload := bytes.NewBufferString(query.Encode())
+
+	res, err := c.postContext(ctx, path, nil, payload)
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var wikiAttachment *Attachment
+
+	if err := json.Unmarshal(body, &wikiAttachment); err != nil {
+		return nil, err
+	}
+
+	return wikiAttachment, nil
+}
+
+// DownloadWikiAttachment download Wiki page’s attachment file.
+//
+// For more details, see the API document.
+//
+// https://developer.nulab.com/docs/backlog/api/2/get-wiki-page-attachment/#get-wiki-page-attachment
+func (c *Client) DownloadWikiAttachment(wikiId, attachmentId uint64) (data []byte, filename string, err error) {
+	return c.DownloadWikiAttachmentContext(context.Background(), wikiId, attachmentId)
+}
+
+// DownloadWikiAttachmentContext accepts context.
+func (c *Client) DownloadWikiAttachmentContext(ctx context.Context, wikiId, attachmentId uint64) (data []byte, filename string, err error) {
+	p, err := c.root.Parse(path.Join(
+		V2WikisPath, fmt.Sprint(wikiId),
+		"attachments", fmt.Sprint(attachmentId)))
+
+	if err != nil {
+		return nil, "", err
+	}
+
+	res, err := c.getContext(ctx, p, nil)
+
+	if err != nil {
+		return nil, "", err
+	}
+
+	defer res.Body.Close()
+
+	_, params, err := mime.ParseMediaType(res.Header.Get("Content-Disposition"))
+
+	if err != nil {
+		return nil, "", err
+	}
+
+	filename = params["filename"]
+
+	data, err = ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		return nil, "", err
+	}
+
+	return data, filename, nil
 }
