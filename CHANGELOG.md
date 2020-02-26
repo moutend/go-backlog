@@ -6,6 +6,10 @@
 - Add `client.GetWikiCount`.
 - Add `client.GetWikiTags`.
 - Fix test.
+- Add `client.GetWikiAttachments`.
+- Add `client.CreateWikiAttachment`.
+- Add `client.DeleteWikiAttachment`.
+- Add `client.DownloadWikiAttachment`.
 
 ## v0.4.1
 
