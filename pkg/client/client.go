@@ -1,13 +1,17 @@
 package client
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
+	"mime/multipart"
 	"net/http"
 	"net/url"
+	"os"
+	"path/filepath"
 
 	. "github.com/moutend/go-backlog/pkg/types"
 )
@@ -143,6 +147,7 @@ func (c *Client) patchContext(ctx context.Context, endpoint *url.URL, query url.
 
 	return res, nil
 }
+
 func (c *Client) postContext(ctx context.Context, endpoint *url.URL, query url.Values, payload io.Reader) (*http.Response, error) {
 	req, err := c.newRequestContext(ctx, http.MethodPost, endpoint, query, payload)
 
@@ -151,6 +156,49 @@ func (c *Client) postContext(ctx context.Context, endpoint *url.URL, query url.V
 	}
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
+	res, err := c.httpClient.Do(req)
+
+	if err != nil {
+		return nil, err
+	}
+	if err := validateResponse(res); err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+func (c *Client) postFileContext(ctx context.Context, endpoint *url.URL, query url.Values, path string) (*http.Response, error) {
+	file, err := os.Open(path)
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer file.Close()
+
+	body := &bytes.Buffer{}
+	writer := multipart.NewWriter(body)
+
+	defer writer.Close()
+
+	part, err := writer.CreateFormFile(filepath.Base(path), filepath.Base(path))
+
+	if err != nil {
+		return nil, err
+	}
+	if _, err := io.Copy(part, file); err != nil {
+		return nil, err
+	}
+
+	req, err := c.newRequestContext(ctx, http.MethodPost, endpoint, query, body)
+
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("Content-Type", writer.FormDataContentType())
 
 	res, err := c.httpClient.Do(req)
 
