@@ -133,7 +133,13 @@ func (c *Client) UpdateIssueContext(ctx context.Context, issue *Issue, notifiedU
 		return nil, fmt.Errorf("issue is required")
 	}
 
-	path, err := c.root.Parse(path.Join(V2IssuesPath, issue.IssueKey))
+	issueIdOrKey := fmt.Sprint(issue.Id)
+
+	if issue.IssueKey != "" {
+		issueIdOrKey = issue.IssueKey
+	}
+
+	path, err := c.root.Parse(path.Join(V2IssuesPath, issueIdOrKey))
 
 	if err != nil {
 		return nil, err
