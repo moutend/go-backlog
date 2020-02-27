@@ -19,7 +19,7 @@ import (
 )
 
 var (
-	version   = `v0.5.0`
+	version   = `v0.6.0`
 	userAgent = fmt.Sprintf("go-backlog %v (Fore more details, see https://github.com/moutend/go-backlog)", version)
 )
 

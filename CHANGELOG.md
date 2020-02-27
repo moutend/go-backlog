@@ -1,5 +1,7 @@
 # develop
 
+## v0.6.0
+
 - Change method signature of `client.CreateWikiAttachments`.
 - Modify internal test implementation.
 - Add `client.GetSpaceDiskUsage`.
