@@ -414,3 +414,15 @@ func postWikis12345Attachments() *http.Response {
 		Header: make(http.Header),
 	}
 }
+
+func getWikis12345Attachments67890() *http.Response {
+	res := &http.Response{
+		StatusCode: http.StatusOK,
+		Body:       ioutil.NopCloser(bytes.NewBufferString(`response body`)),
+		Header:     make(http.Header),
+	}
+
+	res.Header.Add(`Content-Disposition`, `attachment;filename="attachment.txt"`)
+
+	return res
+}

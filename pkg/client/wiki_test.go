@@ -167,7 +167,7 @@ func TestDeleteWikiAttachment(t *testing.T) {
 	t.Logf("DeleteWikiAttachment: %+v\n", deletedAttachment)
 }
 
-func TestCreateWikiAttachment(t *testing.T) {
+func TestAddWikiAttachment(t *testing.T) {
 	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
@@ -193,4 +193,20 @@ func TestCreateWikiAttachment(t *testing.T) {
 	}
 
 	t.Logf("CreateWikiAttachment: %+v\n", addedAttachments)
+}
+
+func TestDownloadWikiAttachment(t *testing.T) {
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	data, filename, err := client.DownloadWikiAttachment(12345, 67890)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Logf("DownloadWikiAttachment: %s %s\n", data, filename)
 }

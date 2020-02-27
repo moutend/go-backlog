@@ -48,6 +48,8 @@ func NewFakeClient(t *testing.T) *http.Client {
 			return deleteWikis12345Attachments67890()
 		case "POST /api/v2/wikis/12345/attachments":
 			return postWikis12345Attachments()
+		case "GET /api/v2/wikis/12345/attachments/67890":
+			return getWikis12345Attachments67890()
 		default:
 			break
 		}
