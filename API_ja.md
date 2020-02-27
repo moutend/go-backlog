@@ -5,7 +5,7 @@
 - [ ] [スペースアイコン画像の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space-logo/)
 - [ ] [スペースのお知らせの取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space-notification/)
 - [ ] [スペースのお知らせの更新](https://developer.nulab.com/ja/docs/backlog/api/2/update-space-notification/)
-- [ ] [スペースの容量使用状況の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space-disk-usage/)
+- [x] [スペースの容量使用状況の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-space-disk-usage/)
 - [x] [添付ファイルの送信](https://developer.nulab.com/ja/docs/backlog/api/2/post-attachment-file/)
 - [x] [ユーザー一覧の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-user-list/)
 - [ ] [ユーザー情報の取得](https://developer.nulab.com/ja/docs/backlog/api/2/get-user/)

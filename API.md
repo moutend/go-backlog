@@ -5,7 +5,7 @@
 - [ ] [Get Space Logo](https://developer.nulab.com/docs/backlog/api/2/get-space-logo/)
 - [ ] [Get Space Notification](https://developer.nulab.com/docs/backlog/api/2/get-space-notification/)
 - [ ] [Update Space Notification](https://developer.nulab.com/docs/backlog/api/2/update-space-notification/)
-- [ ] [Get Space Disk Usage](https://developer.nulab.com/docs/backlog/api/2/get-space-disk-usage/)
+- [x] [Get Space Disk Usage](https://developer.nulab.com/docs/backlog/api/2/get-space-disk-usage/)
 - [x] [Post Attachment File](https://developer.nulab.com/docs/backlog/api/2/post-attachment-file/)
 - [x] [Get User List](https://developer.nulab.com/docs/backlog/api/2/get-user-list/)
 - [ ] [Get User](https://developer.nulab.com/docs/backlog/api/2/get-user/)
