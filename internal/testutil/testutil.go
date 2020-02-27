@@ -88,6 +88,16 @@ func NewFakeClient(t *testing.T) *http.Client {
 			return getPullRequestsCount()
 		case "GET /api/v2/projects/12345/git/repositories/67890/pullRequests":
 			return getPullRequests()
+		case "GET /api/v2/projects/12345/git/repositories":
+			return getRepositories()
+		case "GET /api/v2/projects/12345/git/repositories/67890":
+			return getRepository()
+		case "GET /api/v2/space":
+			return getSpace()
+		case "GET /api/v2/users":
+			return getUsers()
+		case "GET /api/v2/users/myself":
+			return getMyself()
 		default:
 			break
 		}

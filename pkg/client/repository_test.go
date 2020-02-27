@@ -1,44 +1,39 @@
 package client
 
 import (
-	"log"
 	"testing"
 
 	"github.com/moutend/go-backlog/internal/testutil"
 )
 
 func TestGetRepositories(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
-
-	rs, err := client.GetRepositories("LIFE", nil)
+	rs, err := client.GetRepositories("12345", nil)
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	log.Printf("GetRepositories: %+v\n", rs)
+	t.Logf("GetRepositories: %+v\n", rs)
 }
 
 func TestGetRepository(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
-
-	r, err := client.GetRepository("LIFE", "my-test-repo")
+	r, err := client.GetRepository("12345", "67890")
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	log.Printf("GetRepository: %+v\n", r)
+	t.Logf("GetRepository: %+v\n", r)
 }

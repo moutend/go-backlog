@@ -1,20 +1,17 @@
 package client
 
 import (
-	"log"
 	"testing"
 
 	"github.com/moutend/go-backlog/internal/testutil"
 )
 
 func TestGetSpace(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
-
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
 
 	s, err := client.GetSpace()
 
@@ -22,5 +19,5 @@ func TestGetSpace(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	log.Printf("GetSpace: %+v\n", s)
+	t.Logf("GetSpace: %+v\n", s)
 }
