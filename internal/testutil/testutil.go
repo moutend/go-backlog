@@ -7,11 +7,6 @@ import (
 	"testing"
 )
 
-var (
-	defaultResponse *http.Response = nil
-	responseMap                    = make(map[string]*http.Response)
-)
-
 type RoundTripFunc func(req *http.Request) *http.Response
 
 func (fn RoundTripFunc) RoundTrip(req *http.Request) (*http.Response, error) {
@@ -30,16 +25,39 @@ func NewFakeClient(t *testing.T) *http.Client {
 	return NewTestClient(func(req *http.Request) *http.Response {
 		t.Logf("%s %s\n", req.Method, req.URL.Path)
 
-		if responseMap[req.Method+" "+req.URL.Path] != nil {
-			return responseMap[req.Method+" "+req.URL.Path]
+		switch req.Method + " " + req.URL.Path {
+		case "POST /api/v2/space/attachment":
+			return postSpaceAttachment()
+		case "GET /api/v2/wikis":
+			return getWikis()
+		case "POST /api/v2/wikis":
+			return postWikis()
+		case "GET /api/v2/wikis/12345":
+			return getWikis12345()
+		case "PATCH /api/v2/wikis/12345":
+			return patchWikis12345()
+		case "DELETE /api/v2/wikis/12345":
+			return deleteWikis12345()
+		case "GET /api/v2/wikis/count":
+			return getWikisCount()
+		case "GET /api/v2/wikis/tags":
+			return getWikisTags()
+		case "GET /api/v2/wikis/12345/attachments":
+			return getWikis12345Attachments()
+		case "DELETE /api/v2/wikis/12345/attachments/67890":
+			return deleteWikis12345Attachments67890()
+		case "POST /api/v2/wikis/12345/attachments":
+			return postWikis12345Attachments()
+		default:
+			break
 		}
 
-		return defaultResponse
+		return defaultResponse()
 	})
 }
 
-func init() {
-	defaultResponse = &http.Response{
+func defaultResponse() *http.Response {
+	return &http.Response{
 		StatusCode: http.StatusBadRequest,
 		Body: ioutil.NopCloser(bytes.NewBufferString(`{
   "errors": [

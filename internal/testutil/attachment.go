@@ -6,8 +6,9 @@ import (
 	"net/http"
 )
 
-func init() {
-	responseMap[http.MethodPost+" "+"/api/v2/space/attachment"] = &http.Response{
+func postSpaceAttachment() *http.Response {
+	// http.MethodPost+" "+"/api/v2/space/attachment"
+	return &http.Response{
 		StatusCode: http.StatusOK,
 		Body: ioutil.NopCloser(bytes.NewBufferString(`{
   "id": 1,

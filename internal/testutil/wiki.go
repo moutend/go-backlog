@@ -6,8 +6,9 @@ import (
 	"net/http"
 )
 
-func init() {
-	responseMap[http.MethodGet+" "+"/api/v2/wikis"] = &http.Response{
+func getWikis() *http.Response {
+	// http.MethodGet+" "+"/api/v2/wikis"
+	return &http.Response{
 		StatusCode: http.StatusOK,
 		Body: ioutil.NopCloser(bytes.NewBufferString(`[
   {
@@ -42,8 +43,11 @@ func init() {
 ]`)),
 		Header: make(http.Header),
 	}
+}
 
-	responseMap[http.MethodPost+" "+"/api/v2/wikis"] = &http.Response{
+func postWikis() *http.Response {
+	// http.MethodPost+" "+"/api/v2/wikis"
+	return &http.Response{
 		StatusCode: http.StatusCreated,
 		Body: ioutil.NopCloser(bytes.NewBufferString(`{
   "id": 1,
@@ -80,8 +84,11 @@ func init() {
 }`)),
 		Header: make(http.Header),
 	}
+}
 
-	responseMap[http.MethodGet+" "+"/api/v2/wikis/12345"] = &http.Response{
+func getWikis12345() *http.Response {
+	// http.MethodGet+" "+"/api/v2/wikis/12345"
+	return &http.Response{
 		StatusCode: http.StatusOK,
 		Body: ioutil.NopCloser(bytes.NewBufferString(`{
   "id": 1,
@@ -159,8 +166,11 @@ func init() {
 }`)),
 		Header: make(http.Header),
 	}
+}
 
-	responseMap[http.MethodPatch+" "+"/api/v2/wikis/12345"] = &http.Response{
+func patchWikis12345() *http.Response {
+	// http.MethodPatch+" "+"/api/v2/wikis/12345"
+	return &http.Response{
 		StatusCode: http.StatusOK,
 		Body: ioutil.NopCloser(bytes.NewBufferString(`{
   "id": 1,
@@ -235,8 +245,11 @@ func init() {
 }`)),
 		Header: make(http.Header),
 	}
+}
 
-	responseMap[http.MethodDelete+" "+"/api/v2/wikis/12345"] = &http.Response{
+func deleteWikis12345() *http.Response {
+	// http.MethodDelete+" "+"/api/v2/wikis/12345"
+	return &http.Response{
 		StatusCode: http.StatusOK,
 		Body: ioutil.NopCloser(bytes.NewBufferString(`{
   "id": 1,
@@ -314,21 +327,88 @@ func init() {
 }`)),
 		Header: make(http.Header),
 	}
+}
 
-	responseMap[http.MethodGet+" "+"/api/v2/wikis/count"] = &http.Response{
+func getWikisCount() *http.Response {
+	// http.MethodGet+" "+"/api/v2/wikis/count"
+	return &http.Response{
 		StatusCode: http.StatusOK,
 		Body: ioutil.NopCloser(bytes.NewBufferString(`{
   "count": 10
 }`)),
 		Header: make(http.Header),
 	}
+}
 
-	responseMap[http.MethodGet+" "+"/api/v2/wikis/tags"] = &http.Response{
+func getWikisTags() *http.Response {
+	// http.MethodGet+" "+"/api/v2/wikis/tags"
+	return &http.Response{
 		StatusCode: http.StatusOK,
 		Body: ioutil.NopCloser(bytes.NewBufferString(`[
   {
     "id": 1,
     "name": "test"
+  }
+]`)),
+		Header: make(http.Header),
+	}
+}
+
+func getWikis12345Attachments() *http.Response {
+	// http.MethodGet+" "+"/api/v2/wikis/12345/attachments"
+	return &http.Response{
+		StatusCode: http.StatusOK,
+		Body: ioutil.NopCloser(bytes.NewBufferString(`[
+  {
+    "id": 1,
+    "name": "IMGP0088.JPG",
+    "size": 85079
+  }
+]`)),
+		Header: make(http.Header),
+	}
+}
+
+func deleteWikis12345Attachments67890() *http.Response {
+	// http.MethodDelete+" "+"/api/v2/wikis/12345/attachments/67890"
+	return &http.Response{
+		StatusCode: http.StatusOK,
+		Body: ioutil.NopCloser(bytes.NewBufferString(`{
+  "id": 2,
+  "name": "Duke.png",
+  "size": 196186,
+  "createdUser": {
+    "id": 1,
+    "userId": "admin",
+    "name": "admin",
+    "roleType": 1,
+    "lang": null,
+    "mailAddress": "eguchi@nulab.example"
+  },
+  "created": "2014-07-11T06:26:05Z"
+}`)),
+		Header: make(http.Header),
+	}
+}
+
+func postWikis12345Attachments() *http.Response {
+	// http.MethodPost+" "+"/api/v2/wikis/12345/attachments"
+	return &http.Response{
+		StatusCode: http.StatusCreated,
+		Body: ioutil.NopCloser(bytes.NewBufferString(`[
+  {
+    "id": 2,
+    "name": "Duke.png",
+    "size": 196186,
+    "createdUser": {
+      "id": 1,
+      "userId": "admin",
+      "name": "admin",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": "eguchi@nulab.example"
+    },
+    "created": "2014-07-11T06:26:05Z"
   }
 ]`)),
 		Header: make(http.Header),
