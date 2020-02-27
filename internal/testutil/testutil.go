@@ -68,6 +68,10 @@ func NewFakeClient(t *testing.T) *http.Client {
 			return getIssuesCount()
 		case "GET /api/v2/issues":
 			return getIssues()
+		case "GET /api/v2/notifications":
+			return getNotifications()
+		case "GET /api/v2/priorities":
+			return getPriorities()
 		default:
 			break
 		}
