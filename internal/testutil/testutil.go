@@ -54,6 +54,20 @@ func NewFakeClient(t *testing.T) *http.Client {
 			return getIssuesComments()
 		case "GET /api/v2/projects/12345/git/repositories/67890/pullRequests/123/comments":
 			return getPullRequestsComments()
+		case "POST /api/v2/issues":
+			return postIssues()
+		case "GET /api/v2/issues/12345":
+			return getIssues12345()
+		case "PATCH /api/v2/issues/12345":
+			return patchIssues12345()
+		case "DELETE /api/v2/issues/12345":
+			return deleteIssues12345()
+		case "GET /api/v2/projects/12345/issueTypes":
+			return getIssueTypes()
+		case "GET /api/v2/issues/count":
+			return getIssuesCount()
+		case "GET /api/v2/issues":
+			return getIssues()
 		default:
 			break
 		}
