@@ -10,10 +10,6 @@ import (
 	. "github.com/moutend/go-backlog/pkg/types"
 )
 
-const (
-	V2ProjectsPath = "/api/v2/projects"
-)
-
 // GetProjectStatuses returns list of status in the project.
 //
 // For more details, see the API document.

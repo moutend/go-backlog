@@ -9,10 +9,6 @@ import (
 	. "github.com/moutend/go-backlog/pkg/types"
 )
 
-const (
-	V2UsersPath = "/api/v2/users"
-)
-
 // GetUsers returns list of users in your space.
 //
 // For more details, see the API document.

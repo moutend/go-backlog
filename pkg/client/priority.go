@@ -8,10 +8,6 @@ import (
 	. "github.com/moutend/go-backlog/pkg/types"
 )
 
-const (
-	V2PrioritiesPath = "/api/v2/priorities"
-)
-
 // GetPriorities returns list of priorities.
 //
 // For more details, see the API document.

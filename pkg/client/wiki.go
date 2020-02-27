@@ -13,10 +13,6 @@ import (
 	. "github.com/moutend/go-backlog/pkg/types"
 )
 
-const (
-	V2WikisPath = "/api/v2/wikis"
-)
-
 // AddWiki adds new Wiki page.
 //
 // For more details, see the API document.

@@ -9,10 +9,6 @@ import (
 	. "github.com/moutend/go-backlog/pkg/types"
 )
 
-const (
-	V2NotificationsPath = "/api/v2/notifications"
-)
-
 // GetNotifications returns own notifications.
 //
 // For more details, see the API document.

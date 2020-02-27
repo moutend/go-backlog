@@ -8,15 +8,6 @@ import (
 	. "github.com/moutend/go-backlog/pkg/types"
 )
 
-const (
-	V2SpacePath             = "/api/v2/space"
-	V2SpaceActivitiesPath   = "/api/v2/space/activities"
-	V2SpaceImagePath        = "/api/v2/space/image"
-	V2SpaceNotificationPath = "/api/v2/space/notification"
-	V2SpaceDiskUsagePath    = "/api/v2/space/diskUsage"
-	V2SpaceAttachmentPath   = "/api/v2/space/attachment"
-)
-
 // GetSpace returns information about your space.
 //
 // For more details, see the API document.

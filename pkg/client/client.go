@@ -1,3 +1,4 @@
+// client provides API client for backlog.com.
 package client
 
 import (
@@ -12,6 +13,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"strings"
 
 	. "github.com/moutend/go-backlog/pkg/types"
 )
@@ -21,24 +23,46 @@ var (
 	userAgent = fmt.Sprintf("go-backlog %v (Fore more details, see https://github.com/moutend/go-backlog)", version)
 )
 
-// HTTPClient is an interface which performs http.Client.Do method.
-type HTTPClient interface {
-	Do(req *http.Request) (*http.Response, error)
+// OptionFunc modifies API client.
+type OptionFunc func(*Client)
+
+// OptionHTTPClient sets the given HTTP client.
+func OptionHTTPClient(client *http.Client) OptionFunc {
+	return func(c *Client) {
+		if client == nil {
+			return
+		}
+
+		c.httpClient = client
+	}
 }
 
 // Client provides API access.
 type Client struct {
 	root       *url.URL
+	space      string
 	token      string
-	httpClient HTTPClient
+	httpClient *http.Client
 }
 
-func New(space, token string) (*Client, error) {
+// New returns API client.
+//
+// Note: space is your backlog address.
+//
+// // OK
+// client, _ := client.New("example.backlog.com", "xxxxxxxx")
+//
+// // OK
+// client, _ := client.New("https://example.backlog.com", "xxxxxxxx")
+func New(space, token string, opts ...OptionFunc) (*Client, error) {
 	if space == "" {
-		return nil, fmt.Errorf("space is empty")
+		return nil, fmt.Errorf("space is required")
 	}
 	if token == "" {
-		return nil, fmt.Errorf("token is empty")
+		return nil, fmt.Errorf("token is required")
+	}
+	if strings.HasPrefix(space, "https://") {
+		space = strings.TrimPrefix(space, "https://")
 	}
 
 	root, err := url.Parse("https://" + space)
@@ -49,16 +73,16 @@ func New(space, token string) (*Client, error) {
 
 	client := &Client{
 		root:       root,
+		space:      space,
 		token:      token,
 		httpClient: &http.Client{},
 	}
 
-	return client, nil
-}
+	for _, opt := range opts {
+		opt(client)
+	}
 
-// SetHTTPClient sets default HTTP client.
-func (c *Client) SetHTTPClient(hc HTTPClient) {
-	c.httpClient = hc
+	return client, nil
 }
 
 func (c *Client) newRequestContext(ctx context.Context, method string, endpoint *url.URL, query url.Values, payload io.Reader) (*http.Request, error) {

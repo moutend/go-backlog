@@ -13,11 +13,6 @@ import (
 	. "github.com/moutend/go-backlog/pkg/types"
 )
 
-const (
-	V2IssuesPath      = "/api/v2/issues"
-	V2IssuesCountPath = "/api/v2/issues/count"
-)
-
 // AddIssue adds new issue.
 //
 // For more details, see the API document.
