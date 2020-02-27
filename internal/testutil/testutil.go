@@ -50,6 +50,10 @@ func NewFakeClient(t *testing.T) *http.Client {
 			return postWikis12345Attachments()
 		case "GET /api/v2/wikis/12345/attachments/67890":
 			return getWikis12345Attachments67890()
+		case "GET /api/v2/issues/12345/comments":
+			return getIssuesComments()
+		case "GET /api/v2/projects/12345/git/repositories/67890/pullRequests/123/comments":
+			return getPullRequestsComments()
 		default:
 			break
 		}
