@@ -98,6 +98,8 @@ func NewFakeClient(t *testing.T) *http.Client {
 			return getUsers()
 		case "GET /api/v2/users/myself":
 			return getMyself()
+		case "GET /api/v2/space/diskUsage":
+			return getSpaceDiskUsage()
 		default:
 			break
 		}

@@ -23,3 +23,30 @@ func getSpace() *http.Response {
 		Header: make(http.Header),
 	}
 }
+
+func getSpaceDiskUsage() *http.Response {
+	return &http.Response{
+		StatusCode: http.StatusOK,
+		Body: ioutil.NopCloser(bytes.NewBufferString(`{
+  "capacity": 1073741824,
+  "issue": 119511,
+  "wiki": 48575,
+  "file": 0,
+  "subversion": 0,
+  "git": 0,
+  "gitLFS": 0,
+  "details": [
+    {
+      "projectId": 1,
+      "issue": 11931,
+      "wiki": 0,
+      "file": 0,
+      "subversion": 0,
+      "git": 0,
+      "gitLFS": 0
+    }
+  ]
+}`)),
+		Header: make(http.Header),
+	}
+}
