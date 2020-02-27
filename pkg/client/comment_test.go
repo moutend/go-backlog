@@ -1,42 +1,37 @@
 package client
 
 import (
-	"log"
 	"testing"
 
 	"github.com/moutend/go-backlog/internal/testutil"
 )
 
 func TestGetIssueComments(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
-
-	cs, err := client.GetIssueComments("3395955", nil)
+	cs, err := client.GetIssueComments("12345", nil)
 
 	if err != nil {
 		t.Fatal(err)
 	}
-	log.Printf("GetIssueComments: %+v\n", cs)
+	t.Logf("GetIssueComments: %+v\n", cs)
 }
 
 func TestGetPullRequestComments(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
-
-	cs, err := client.GetPullRequestComments("62794", "my-test-repo", 1, nil)
+	cs, err := client.GetPullRequestComments("12345", "67890", 123, nil)
 
 	if err != nil {
 		t.Fatal(err)
 	}
-	log.Printf("GetPullRequestComments: %+v\n", cs)
+	t.Logf("GetPullRequestComments: %+v\n", cs)
 }
