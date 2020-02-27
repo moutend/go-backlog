@@ -1,55 +1,48 @@
 package client
 
 import (
-	"log"
 	"testing"
 
 	"github.com/moutend/go-backlog/internal/testutil"
 )
 
 func TestGetProjectStatuses(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
-
-	pss, err := client.GetProjectStatuses("62794")
+	pss, err := client.GetProjectStatuses("12345")
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	log.Printf("GetProjectStatuses: %+v\n", pss)
+	t.Logf("GetProjectStatuses: %+v\n", pss)
 }
 func TestGetProject(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
-
-	p, err := client.GetProject("62794")
+	p, err := client.GetProject("12345")
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	log.Printf("GetProject: %+v\n", p)
+	t.Logf("GetProject: %+v\n", p)
 }
 
 func TestGetProjects(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
-
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
 
 	ps, err := client.GetProjects(nil)
 
@@ -57,5 +50,5 @@ func TestGetProjects(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	log.Printf("GetProjects: %+v\n", ps)
+	t.Logf("GetProjects: %+v\n", ps)
 }

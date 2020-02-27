@@ -1,7 +1,6 @@
 package client
 
 import (
-	"log"
 	"testing"
 
 	"github.com/moutend/go-backlog/pkg/types"
@@ -10,17 +9,15 @@ import (
 )
 
 func TestAddPullRequest(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
-
 	pullRequest := &types.PullRequest{
 		ProjectId:    12345,
-		RepositoryId: 12345,
+		RepositoryId: 67890,
 		Summary:      "summary",
 		Base:         "base-branch",
 		Branch:       "branch",
@@ -32,39 +29,38 @@ func TestAddPullRequest(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	log.Printf("AddPullRequest: %+v\n", pr)
+	t.Logf("AddPullRequest: %+v\n", pr)
 }
 
 func TestGetPullRequest(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
-
-	pr, err := client.GetPullRequest("62794", "my-test-repo", 1)
+	pr, err := client.GetPullRequest("12345", "67890", 123)
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	log.Printf("GetPullRequest: %+v\n", pr)
+	t.Logf("GetPullRequest: %+v\n", pr)
 }
 
 func TestUpdatePullRequest(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
-
 	pullRequest := &types.PullRequest{
-		Summary:     "Updated pull request",
-		Description: "Updated description",
+		ProjectId:    12345,
+		RepositoryId: 67890,
+		Number:       123,
+		Summary:      "Updated pull request",
+		Description:  "Updated description",
 	}
 
 	pr, err := client.UpdatePullRequest(pullRequest, nil, "")
@@ -73,40 +69,52 @@ func TestUpdatePullRequest(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	log.Printf("UpdatePullRequest: %+v\n", pr)
+	t.Logf("UpdatePullRequest: %+v\n", pr)
 }
 
 func TestGetPullRequestsCount(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`{}`), testutil.EnableHTTPRequest))
-
-	count, err := client.GetPullRequestsCount("62794", "my-test-repo")
+	count, err := client.GetPullRequestsCount("12345", "67890")
 
 	if err != nil {
 		t.Fatal(err)
 	}
-	log.Printf("GetPullRequestsCount: %+v\n", count)
+	t.Logf("GetPullRequestsCount: %+v\n", count)
+}
+
+func TestGetPullRequests(t *testing.T) {
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	prs, err := client.GetPullRequests("12345", "67890", nil)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Logf("GetPullRequests: %+v\n", prs)
 }
 
 func TestGetAllPullRequests(t *testing.T) {
-	client, err := New(testutil.BacklogSpace, testutil.BacklogToken)
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	client.SetHTTPClient(testutil.NewTestClient([]byte(`[]`), testutil.EnableHTTPRequest))
-
-	prs, err := client.GetAllPullRequests("PRJ", "my-test-repo")
+	prs, err := client.GetAllPullRequests("12345", "67890")
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	log.Printf("GetAllPullRequests: %+v\n", prs)
+	t.Logf("GetAllPullRequests: %+v\n", prs)
 }

@@ -72,6 +72,22 @@ func NewFakeClient(t *testing.T) *http.Client {
 			return getNotifications()
 		case "GET /api/v2/priorities":
 			return getPriorities()
+		case "GET /api/v2/projects/12345/statuses":
+			return getProject12345Statuses()
+		case "GET /api/v2/projects/12345":
+			return getProject12345()
+		case "GET /api/v2/projects":
+			return getProjects()
+		case "POST /api/v2/projects/12345/git/repositories/67890/pullRequests":
+			return postPullRequest()
+		case "GET /api/v2/projects/12345/git/repositories/67890/pullRequests/123":
+			return getPullRequest()
+		case "PATCH /api/v2/projects/12345/git/repositories/67890/pullRequests/123":
+			return patchPullRequest()
+		case "GET /api/v2/projects/12345/git/repositories/67890/pullRequests/count":
+			return getPullRequestsCount()
+		case "GET /api/v2/projects/12345/git/repositories/67890/pullRequests":
+			return getPullRequests()
 		default:
 			break
 		}

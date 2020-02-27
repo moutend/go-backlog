@@ -287,7 +287,9 @@ func (c *Client) GetAllPullRequestsContext(ctx context.Context, projectIdOrKey, 
 	count, err := c.GetPullRequestsCount(projectIdOrKey, repositoryIdOrName)
 
 	if err != nil {
+		return nil, err
 	}
+
 	allPullRequests := []*PullRequest{}
 
 	offset := 0
