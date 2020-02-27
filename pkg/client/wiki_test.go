@@ -1,6 +1,8 @@
 package client
 
 import (
+	"io/ioutil"
+	"path/filepath"
 	"testing"
 
 	. "github.com/moutend/go-backlog/pkg/types"
@@ -131,4 +133,64 @@ func TestGetWikiTags(t *testing.T) {
 	}
 
 	t.Logf("GetWikiTags: %+v\n", tags)
+}
+
+func TestGetWikiAttachments(t *testing.T) {
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	attachments, err := client.GetWikiAttachments(12345)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Logf("GetWikiAttachments: %+v\n", attachments)
+}
+
+func TestDeleteWikiAttachment(t *testing.T) {
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	deletedAttachment, err := client.DeleteWikiAttachment(12345, 67890)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Logf("DeleteWikiAttachment: %+v\n", deletedAttachment)
+}
+
+func TestCreateWikiAttachment(t *testing.T) {
+	client, err := New("test.backlog.com", "token", OptionHTTPClient(testutil.NewFakeClient(t)))
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	baseDir, err := ioutil.TempDir("", "testing")
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	outputPath := filepath.Join(baseDir, "testing.txt")
+
+	if err := ioutil.WriteFile(outputPath, []byte("Hello, World!"), 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	addedAttachments, err := client.AddWikiAttachments(12345, outputPath)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Logf("CreateWikiAttachment: %+v\n", addedAttachments)
 }

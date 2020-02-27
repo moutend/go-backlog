@@ -9,6 +9,7 @@ import (
 	"mime"
 	"net/url"
 	"path"
+	"time"
 
 	. "github.com/moutend/go-backlog/pkg/types"
 )
@@ -425,21 +426,34 @@ func (c *Client) DeleteWikiAttachmentContext(ctx context.Context, wikiId, attach
 	return attachment, nil
 }
 
-// CreateWikiAttachment creates and attaches file to Wiki
+// AddWikiAttachments creates and attaches files to Wiki
 //
 // For more details, see the API document.
 //
 // https://developer.nulab.com/docs/backlog/api/2/attach-file-to-wiki/#url-parameters
-func (c *Client) CreateWikiAttachment(wikiId uint64, filepath string) (*Attachment, error) {
-	return c.CreateWikiAttachmentContext(context.Background(), wikiId, filepath)
+func (c *Client) AddWikiAttachments(wikiId uint64, filepaths ...string) ([]*Attachment, error) {
+	return c.AddWikiAttachmentsContext(context.Background(), wikiId, filepaths...)
 }
 
-// CreateWikiAttachmentContext accepts context.
-func (c *Client) CreateWikiAttachmentContext(ctx context.Context, wikiId uint64, filepath string) (*Attachment, error) {
-	attachment, err := c.PostAttachmentContext(ctx, filepath)
+// AddWikiAttachmentsContext accepts context.
+func (c *Client) AddWikiAttachmentsContext(ctx context.Context, wikiId uint64, filepaths ...string) ([]*Attachment, error) {
+	if len(filepaths) == 0 {
+		return nil, nil
+	}
 
-	if err != nil {
-		return nil, err
+	attachments := []*Attachment{}
+
+	for _, filepath := range filepaths {
+		attachment, err := c.PostAttachmentContext(ctx, filepath)
+
+		if err != nil {
+			return nil, err
+		}
+
+		attachments = append(attachments, attachment)
+
+		// backlog API doesn't provide rate / limit information, I don't now that 100ms is enough or not.
+		time.Sleep(100 * time.Millisecond)
 	}
 
 	path, err := c.root.Parse(path.Join(V2WikisPath, fmt.Sprint(wikiId), "attachments"))
@@ -449,7 +463,11 @@ func (c *Client) CreateWikiAttachmentContext(ctx context.Context, wikiId uint64,
 	}
 
 	query := url.Values{}
-	query.Add("attachmentId", fmt.Sprint(attachment.Id))
+
+	for _, attachment := range attachments {
+		query.Add("attachmentId[]", fmt.Sprint(attachment.Id))
+	}
+
 	payload := bytes.NewBufferString(query.Encode())
 
 	res, err := c.postContext(ctx, path, nil, payload)
@@ -466,13 +484,13 @@ func (c *Client) CreateWikiAttachmentContext(ctx context.Context, wikiId uint64,
 		return nil, err
 	}
 
-	var wikiAttachment *Attachment
+	var wikiAttachments []*Attachment
 
-	if err := json.Unmarshal(body, &wikiAttachment); err != nil {
+	if err := json.Unmarshal(body, &wikiAttachments); err != nil {
 		return nil, err
 	}
 
-	return wikiAttachment, nil
+	return wikiAttachments, nil
 }
 
 // DownloadWikiAttachment download Wiki page’s attachment file.
