@@ -1,5 +1,7 @@
 # develop
 
+## v0.6.1
+
 - Rename types.Issue.EncodeQuery to types.Issue.URLValues.
 - Fix client.AddIssue.
 - Fix client.UpdateIssue.
