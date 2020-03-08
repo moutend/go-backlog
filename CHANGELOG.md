@@ -1,5 +1,9 @@
 # develop
 
+- Rename types.Issue.EncodeQuery to types.Issue.URLValues.
+- Fix client.AddIssue.
+- Fix client.UpdateIssue.
+
 ## v0.6.0
 
 - Change method signature of `client.CreateWikiAttachments`.
