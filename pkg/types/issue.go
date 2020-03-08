@@ -35,11 +35,14 @@ type Issue struct {
 	Stars          []*Star        `json:"stars"`
 }
 
-func (i *Issue) EncodeQuery() url.Values {
+func (i *Issue) URLValues() url.Values {
 	query := url.Values{}
 
 	if i == nil {
 		return query
+	}
+	if i.ProjectId != nil {
+		query.Add("projectId", fmt.Sprint(*i.ProjectId))
 	}
 	if i.Summary != "" {
 		query.Add("summary", i.Summary)
@@ -72,7 +75,7 @@ func (i *Issue) EncodeQuery() url.Values {
 		query.Add("issueTypeId", fmt.Sprint(i.IssueType.Id))
 	}
 	if i.Priority != nil {
-		query.Add("priority", fmt.Sprint(i.Priority.Id))
+		query.Add("priorityId", fmt.Sprint(i.Priority.Id))
 	}
 	if i.Assignee != nil {
 		query.Add("assigneeId", fmt.Sprint(i.Assignee.Id))

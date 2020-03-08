@@ -45,8 +45,8 @@ func (c *Client) AddIssueContext(ctx context.Context, issue *Issue, notifiedUser
 		return nil, fmt.Errorf("issue.Priority is required")
 	}
 
-	query := issue.EncodeQuery()
-
+	query := issue.URLValues()
+	query.Del("statusId")
 	if len(notifiedUsers) > 0 {
 		for _, notifiedUser := range notifiedUsers {
 			query.Add("notifiedUserId", fmt.Sprint(notifiedUser.Id))
@@ -145,7 +145,8 @@ func (c *Client) UpdateIssueContext(ctx context.Context, issue *Issue, notifiedU
 		return nil, err
 	}
 
-	query := issue.EncodeQuery()
+	query := issue.URLValues()
+	query.Del("projectId")
 
 	if len(notifiedUsers) > 0 {
 		for _, notifiedUser := range notifiedUsers {
