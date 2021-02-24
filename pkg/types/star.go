@@ -1,7 +1,7 @@
 package types
 
 type Star struct {
-	Id        uint64 `json:"id"`
+	Id        int64  `json:"id"`
 	Comment   string `json:"comment"`
 	URL       string `json:"url"`
 	Title     string `json:"title"`

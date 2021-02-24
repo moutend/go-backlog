@@ -1,7 +1,7 @@
 package types
 
 type Attachment struct {
-	Id          uint64 `json:"id"`
+	Id          int64  `json:"id"`
 	Name        string `json:"name"`
 	Size        int    `json:"size"`
 	CreatedUser *User  `json:"createdUser"`

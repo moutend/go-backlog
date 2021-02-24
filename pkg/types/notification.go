@@ -1,7 +1,7 @@
 package types
 
 type Notification struct {
-	Id                  uint64      `json:"id"`
+	Id                  int64       `json:"id"`
 	AlreadyRead         bool        `json:"alreadyRead"`
 	Reason              int         `json:"reason"`
 	ResourceAlreadyRead bool        `json:"resourceAlreadyRead"`

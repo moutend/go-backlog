@@ -7,9 +7,9 @@ import (
 
 // PullRequest represents the pull request.
 type PullRequest struct {
-	Id           uint64  `json:"id"`
-	ProjectId    uint64  `json:"projectId"`
-	RepositoryId uint64  `json:"repositoryID"`
+	Id           int64   `json:"id"`
+	ProjectId    int64   `json:"projectId"`
+	RepositoryId int64   `json:"repositoryID"`
 	Number       int     `json:"number"`
 	Summary      string  `json:"summary"`
 	Description  string  `json:"description"`

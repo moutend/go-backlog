@@ -3,7 +3,7 @@ package types
 type Space struct {
 	SpaceKey          string `json:"spaceKey"`
 	Name              string `json:"name"`
-	OwnerId           uint64 `json:"ownerId"`
+	OwnerId           int64  `json:"ownerId"`
 	Lang              string `json:"lang"`
 	ReportSendTime    string `json:"reportSendTime"`
 	TextFormatingRule string `json:"textFormattingRule"`

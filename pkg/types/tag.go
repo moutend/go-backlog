@@ -1,6 +1,6 @@
 package types
 
 type Tag struct {
-	Id   uint64 `json:"id"`
+	Id   int64  `json:"id"`
 	Name string `json:"name"`
 }

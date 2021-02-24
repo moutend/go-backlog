@@ -2,8 +2,8 @@ package types
 
 // Repository represents the git repository.
 type Repository struct {
-	Id           uint64  `json:"id"`
-	ProjectId    uint64  `json:"projectId"`
+	Id           int64   `json:"id"`
+	ProjectId    int64   `json:"projectId"`
 	Name         string  `json:"name"`
 	Description  string  `json:"description"`
 	HookURL      *string `json:"hookUrl"`

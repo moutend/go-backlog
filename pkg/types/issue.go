@@ -6,10 +6,10 @@ import (
 )
 
 type Issue struct {
-	Id             uint64         `json:"id"`
-	ProjectId      *uint64        `json:"projectId"`
+	Id             int64          `json:"id"`
+	ProjectId      *int64         `json:"projectId"`
 	IssueKey       string         `json:"issueKey"`
-	KeyId          uint64         `json:"keyId"`
+	KeyId          int64          `json:"keyId"`
 	IssueType      *IssueType     `json:"issueType"`
 	Summary        string         `json:"summary"`
 	Description    string         `json:"description"`
@@ -24,7 +24,7 @@ type Issue struct {
 	DueDate        *Date          `json:"dueDate"`
 	EstimatedHours *Hours         `json:"estimatedHours"`
 	ActualHours    *Hours         `json:"actualHours"`
-	ParentIssueId  *uint64        `json:"parentIssueId"`
+	ParentIssueId  *int64         `json:"parentIssueId"`
 	CreatedUser    *User          `json:"createdUser"`
 	Created        *Date          `json:"created"`
 	UpdatedUser    *User          `json:"updatedUser"`

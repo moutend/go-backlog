@@ -1,8 +1,8 @@
 package types
 
 type Wiki struct {
-	Id          uint64        `json:"id"`
-	ProjectId   uint64        `json:"projectId"`
+	Id          int64         `json:"id"`
+	ProjectId   int64         `json:"projectId"`
 	Name        string        `json:"name"`
 	Content     string        `json:"content"`
 	Tags        []*Tag        `json:"tags"`

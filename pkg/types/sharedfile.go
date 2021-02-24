@@ -1,7 +1,7 @@
 package types
 
 type SharedFile struct {
-	Id          uint64 `json:"id"`
+	Id          int64  `json:"id"`
 	Type        string `json:"type"`
 	Dir         string `json:"dir"`
 	Name        string `json:"name"`
